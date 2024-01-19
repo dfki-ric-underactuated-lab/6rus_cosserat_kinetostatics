@@ -31,6 +31,7 @@ In this work, boundary conditions for both IK and FK are formulated for a $`6\ov
 
 ## Kinetostatic model 
 ### Inverse Kinetostatic (IK) model: 
+<<<<<<< HEAD
 For the given pose of the end-effector `p_ee` and `R_ee`, external force `F` and moment `M` acting at the end-effector, initial states of the rod, and unknown variable vector `init_guess`, then `Inverse_Kinetostatic` function computes the motor angles that minimizes the residual vector `residual`. `q1i`, `q2i`, and `q3i` are the motor angles, and universal joints angles respectively whereas `ni_x(0), ni_y(0), ni_z(0), mi_z(0)` are the internal forces and moments at the base of the flexible link which are unknown. Due to universal joints at the base of the rod, mi_x(0)=mi_y(0)=0.
 
 initial states of the rod: 
@@ -40,6 +41,12 @@ initial states of the rod:
 `mi(0)`: internal moments acting at the base of the rod.g
 
 File path: `./Inverse_forward kinetostatic/IK_PCR_ROD.py`
+=======
+For the given pose of the end-effector `p_ee` and `R_ee`, external force `F` and moment `M` acting at the end-effector, and unknown variable vector `init_guess` which are guessed, 
+`Inverse_Kinetostatic` function computes the motor angles that minimizes the residual vector `residual`. `q1i`, `q2i`, and `q3i` are the motor angles, and universal joints angles respectively whereas `ni_x(0), ni_y(0), ni_z(0), mi_z(0)` are the internal forces and moments at the base of the flexible link which are unknown. Due to universal joints at the base of the rod, mi_x(0)=mi_y(0)=0.
+
+File path: `./Inverse and forward kinetostatic/IK_PCR_ROD.py`
+>>>>>>> 830698f797992d7d91f201b9f35fadea01bcdbf9
 
 ```py
 p_ee = np.array([0,0,0.5]) 
