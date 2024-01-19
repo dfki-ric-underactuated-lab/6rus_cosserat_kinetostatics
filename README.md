@@ -15,7 +15,7 @@ EE platform, and axial stiffness evaluation at the EE.
 - Bingbin Yu [bingbin.yu@dfki.de](mailto:bingbin.yu@dfki.de)
 
 ## Introduction
-![test](./assets/humanoid_wrist_plane.png?raw=true "CAD design of $`2S\underbar{P}U+2RSU+1U`$ mechanism")
+![test](./Images/PCR_schematic.png?raw=true "CAD design of $`2S\underbar{P}U+2RSU+1U`$ mechanism")
 
 The here presented 2-DOF mechanism for inclination and tilt possesses two double closed-loop chains and allows increased range of motion compared to a classical $`2S\underbar{P}U+1U`$
 
