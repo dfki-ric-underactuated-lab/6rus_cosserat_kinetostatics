@@ -33,11 +33,11 @@ In this work, boundary conditions for both IK and FK are formulated for a $`6\ov
 initial states of the rod: 
 `pi0`: base position of the flexible rod,
 `Ri0`: orientation at the base of the flexible rod,
-`ni(0)`: internal forces acting at the base of the rod,
-`mi(0)`: internal moments acting at the base of the rod.
+`ni(0)`: internal force acting at the base of the rod,
+`mi(0)`: internal moment acting at the base of the rod.
 
 ### Inverse Kinetostatic (IK) model: 
-For the given pose of the end-effector `p_ee` and `R_ee`, external force `F` and moment `M` acting at the end-effector, initial states of the rod, and unknown variable vector `init_guess`, then `Inverse_Kinetostatic` function computes the motor angles that minimizes the residual vector `residual`. `q1i`, `q2i`, and `q3i` are the motor angles, and universal joints angles respectively whereas `ni_x(0), ni_y(0), ni_z(0), mi_z(0)` are the internal forces and moments at the base of the flexible link which are unknown. Due to universal joints at the base of the rod, mi_x(0)=mi_y(0)=0.
+For the given pose of the end-effector `p_ee` and `R_ee`, external force `F` and moment `M` acting at the end-effector, initial states of the rod, and unknown variable vector `init_guess`, then `Inverse_Kinetostatic` function computes the motor angles that minimizes the residual vector `residual`. `q1i`, `q2i`, and `q3i` are the motor angles, and universal joints angles respectively whereas `ni_x(0), ni_y(0), ni_z(0), mi_z(0)` are the internal forces and moments at the base of the flexible link which are unknown. Due to universal joints at the base of the rod, `mi_x(0)=mi_y(0)=0`.
 
 
 File path: `./Inverse_forward kinetostatic/IK_PCR_ROD.py`
@@ -71,6 +71,8 @@ q1 = Inverse_Kinetostatic(p_ee, R_ee, init_guess)
 
 ### Forward Kinetostatic (FK) model:
 For a given motor angle `q1i`, external force `F` and moment `M` acting at the end-effector, initial states of the rod, and unknown variable vector `init_guess`, then `Forward_Kinetostatic` function computes the pose of the end-effector, `p_ee` and `R_ee` that minimizes the `residual`. 
+
+File path: `./Inverse_forward kinetostatic/FK_PCR_ROD.py`
 
 ```py
 #intial guess for the pose of the end-effector
