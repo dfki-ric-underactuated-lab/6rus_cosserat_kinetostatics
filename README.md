@@ -20,7 +20,7 @@ EE platform, and axial stiffness evaluation at the EE.
 - Bingbin Yu [bingbin.yu@dfki.de](mailto:bingbin.yu@dfki.de)
 
 ## Prequisites
-+The libraries used were tested successfully in Python3.8.16
++The libraries used were tested successfully in Python3.8.16 and Ubuntu 18.04.6 LTS. 
 
 ## Introduction
 <p align="center">
@@ -31,10 +31,12 @@ In this work, boundary conditions for both IK and FK are formulated for a $`6\ov
 
 ## Kinetostatic model 
 ### Inverse Kinetostatic (IK) model:
+For the given pose of the end-effector `p_ee` and `R_ee`, forces `F` and moments `M` acting at the end-effector, and unknown variable vector `init_guess` which are guessed, 
+`Inverse_Kinetostatic` function computes the motor angles that minimizes the residual vector `residual`. `q1i`, `q2i`, and `q3i` are the motor angles, and universal joints angles respectively whereas `ni_x(0), ni_y(0), ni_z(0), mi_z(0)` are the internal forces and moments at the base of the flexible link.
 
 ```py
-p_ee = np.array([0,0,0.5]) #position of center of the end-effector position in world coordinate
-R_ee = np.array([np.deg2rad(10),np.deg2rad(0),np.deg2rad(0)]) #orientation of the end-effector platform about x,y,z axis in world coordinate
+p_ee = np.array([0,0,0.5]) 
+R_ee = np.array([np.deg2rad(10),np.deg2rad(0),np.deg2rad(0)])
 
 #initializing the actuator variables + universal joint values for each rod--> q=[q1, q2, q3] 
 qi = np.array([0,0,0,
@@ -45,9 +47,11 @@ qi = np.array([0,0,0,
                0,0,0])
 
 ##initializing the guess vector for the IK model
-init_guess = np.concatenate([np.zeros(24),qi]) #42 variables
+#init_guess = [n1_x(0), n1_y(0), n1_z(0), m1_z(0),...,n6_x(0), n6_y(0), n6_z(0), m6_z(0), q1i, q2i, q3i,...,q16, q26, q36] #42 variables
+init_guess = np.concatenate([np.zeros(24),qi])
 
 q1 = Inverse_Kinetostatic(p_ee, R_ee, init_guess)
+
 6-element Vector{Real}:
 0.48785652
 0.48785652
