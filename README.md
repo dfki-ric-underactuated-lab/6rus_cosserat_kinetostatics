@@ -24,16 +24,28 @@ In this work, boundary conditions for both IK and FK are formulated for a 6-RUS 
 ### Inverse Kinetostatic (IK) model:
 
 ```py
-x = [0, 0]; # angles in rad  
+p_ee = np.array([0,0,0.5]) #position of center of the end-effector position in world coordinate
+R_ee = np.array([np.deg2rad(10),np.deg2rad(0),np.deg2rad(0)]) #orientation of the end-effector platform about x,y,z axis in world coordinate
 
-qm = Inverse_Kinetostatic(p_ee, angles, init_guess, RPY=True)
-2-element Vector{Real}:
- 0.13347357815533836
- 0.13347357815533836
- 0.13347357815533836
- 0.13347357815533836
- 0.13347357815533836
- 0.13347357815533836
+#initializing the actuator variables + universal joint values for each rod--> q=[q1, q2, q3] 
+qi = np.array([0,0,0,
+               0,0,0,
+               0,0,0,
+               0,0,0,
+               0,0,0,
+               0,0,0])
+
+##initializing the guess vector for the IK model
+init_guess = np.concatenate([np.zeros(24),qi]) #42 variables
+
+qm = Inverse_Kinetostatic(p_ee, R_ee, init_guess)
+6-element Vector{Real}:
+0.48785652
+0.48785652
+0.42037453
+0.28121425
+0.28121425
+0.42037453
 ```
 
 #### Forward Kinematics
