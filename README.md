@@ -1,8 +1,8 @@
 # 6rus_cosserat_kinetostatics
 
-<!-- <p align="center">
+<p align="center">
   <img src="./Images/helical2.gif" alt="Helical Trajectory following GIF" width="400">
-</p> -->
+</p>
 
 ## Abstract:
 Parallel Continuum Robots (PCR) are closed-loop mechanisms but use
