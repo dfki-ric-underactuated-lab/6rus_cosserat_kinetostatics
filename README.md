@@ -1,4 +1,9 @@
 # 6rus_cosserat_kinetostatics
+
+<p align="center">
+  <img src="./Images/helical2.gif" alt="Helical Trajectory following GIF" width="400">
+</p>
+
 ## Abstract:
 Parallel Continuum Robots (PCR) are closed-loop mechanisms but use
 elastic kinematic links connected in parallel between the end-effector (EE) and
@@ -94,12 +99,10 @@ Optimized pose of the EE: p_ee=[9.21906358e-09 7.30108121e-04 4.97398602e-01] an
     <img src="./Images/paper31a.png" alt="Bottom Image" width="200">
   </div> -->
 
-<div>
-  <img src="./Images/helical2.gif" alt="Helical Trajectory following GIF" width="400" style="float: center; margin-right: 20px;">
-  <div style="float: left;">
-    <img src="./Images/paper31a.png" alt="Top Image" width="400" style="display: block; margin-bottom: 10px;">
+
+  <div>
+    <img src="./Images/paper31a.png" alt="Top Image" width="400">
     <img src="./Images/paper31b.png" alt="Bottom Image" width="400">
-  </div>
 </div>
 
 In this simulation, the FK model is validated by comparing the obtained solution of the EE position with samples from a reference helical trajectory under a constant load of 5 N at the EE. Euclidean distance is calculated to measure the error between the FK model and the reference trajectory. The error is of the order $1\times10^{-7}$ for the samples which shows the validity of the boundary conditions for the FK model for the PCR.
@@ -130,9 +133,6 @@ as it needs to estimate the pose of the end-effector. So IK model is used to fin
 
 ```py
 ee_mass = 1e-12 #mass of the end-effector platform (Kg)
-
-#For generating samples at different radius and corresponding height:
-generate_random_points_inside_circle(radius, num_points, height)
 
 #find the IK solution for each of the generated samples using 
 Workspace(p_ee[i], R_ee, init_guess)
