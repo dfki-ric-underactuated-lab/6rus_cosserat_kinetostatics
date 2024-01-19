@@ -122,7 +122,7 @@ FK_vec = Forward_Kinetostatic_traj(motor_angle[i], init_guess)
 ```
 ### Workspace analysis
 In this section, a reachable workspace is estimated for a 6-\overbar{R}US PCR. Estimating a workspace means that finding solutions for the boundary value problem within the tolerance for the boundary conditions defined for the PCR. Due to redundancy in the elastic rod, just providing the joint angles will give a different solution. The computational time taken by the boundary value problem is also large
-as it needs to estimate the pose of the end-effector. So IK model is used to find a solution for heuristically provided sampled points from a cylindrical volume which represents the EE position in Cartesian space. For each sample point, IK solution is calculated, and then based on the boundary condition tolerances, only valid solutions are considered as part of the reachable workspace. For total 4000 samples, the mean computational time for the workspace samples is estimated to be 3.82 seconds with standard deviation of 1.15 seconds. The total time required for the computation of 4000 samples is estimated to be 16.5 hours. The mass of the end-effector is considered negligible for this simulation and orientation at the end-effector is also considered constant as `Ree=[0,0,0]`
+as it needs to estimate the pose of the end-effector. So IK model is used to find a solution for heuristically provided sampled points from a cylindrical volume which represents the EE position in Cartesian space. For each sample point, IK solution is calculated, and then based on the boundary condition tolerances, only valid solutions are considered as part of the reachable workspace. For total 4000 samples, the mean computational time for the workspace samples is estimated to be 3.82 seconds with standard deviation of 1.15 seconds. The total time required for the computation of 4000 samples is estimated to be 16.5 hours. The mass of the end-effector is considered negligible for this simulation and orientation at the end-effector is also considered constant as `Ree=[0,0,0]`. The tolerance of `5e-10 units` is considered for all terms in the residual vector `residual`
 
 <p align="center">
   <img src="./Images/workspace_rod.png" alt="test" width="600"/>
@@ -137,7 +137,7 @@ generate_random_points_inside_circle(radius, num_points, height)
 #find the IK solution for each of the generated samples using 
 Workspace(p_ee[i], R_ee, init_guess)
 ```
-The functions stores the residual values in an excel file. This excel file is then passed to the `workspace_analysis()` where the reachable workspace is filtered and visualized based on the tolerance values (`restrack`).
+Function `Workspace` stores the residual values in an excel file. This excel file contains columns for computational time (`total_time`), motor angles (`q1_vec`), universal joint angles (`q2_vec` and `q3_vec`), sample position of end-effector (`p_ee[i]`), and the residual vector for each sample (`restrack`). The excel file is then passed to the `workspace_analysis()` function where the reachable workspace is filtered and visualized based on the tolerance values (`restrack`).
 ```py
 
 ```
