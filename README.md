@@ -79,7 +79,7 @@ Optimized pose of the EE: p_ee=[9.21906358e-09 7.30108121e-04 4.97398602e-01] an
 ```
 
 ### Trajectory comparison
-![Alt Text](./Images/helical2.mp4?raw=false)
+![GitHub Octocat GIF](./Images/helical2.mp4?raw=false)
 
 In this simulation, the FK model is validated by comparing the obtained solution of the EE position with samples from a reference helical trajectory under a constant load of 5 N at the EE. Euclidean distance is calculated to measure the error between the FK model and the reference trajectory. The error is of the order $1\times10^{-7}$ for the samples which shows the validity of the boundary conditions for the FK model for the PCR.
 ```py
