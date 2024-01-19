@@ -1,5 +1,5 @@
 # 6rus_cosserat_kinetostatics
-# Abstract:
+## Abstract:
 Parallel Continuum Robots (PCR) are closed-loop mechanisms but use
 elastic kinematic links connected in parallel between the end-effector (EE) and
 the base platform. PCRs are actuated primarily through large deflections of the
