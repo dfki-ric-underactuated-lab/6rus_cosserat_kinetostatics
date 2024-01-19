@@ -38,7 +38,7 @@ qi = np.array([0,0,0,
 ##initializing the guess vector for the IK model
 init_guess = np.concatenate([np.zeros(24),qi]) #42 variables
 
-qm = Inverse_Kinetostatic(p_ee, R_ee, init_guess)
+q1 = Inverse_Kinetostatic(p_ee, R_ee, init_guess)
 6-element Vector{Real}:
 0.48785652
 0.48785652
@@ -49,16 +49,37 @@ qm = Inverse_Kinetostatic(p_ee, R_ee, init_guess)
 ```
 
 #### Forward Kinematics
-Computes the end-effector orientation `α` and `γ`, given the solution for the actuator lengths `q`:
+```py
 
-```jl
-julia> α, γ = forward_kinematics(q, RH5_wrist, solution = [2,1,1]) 
-(-2.2204460492503136e-16, 0.0)
-```
+#intial guess for the pose of the end-effector
+p_ee = np.array([0,0,0.4])
+R_ee = np.array([np.deg2rad(0), np.deg2rad(0), np.deg2rad(0)])
 
+#intial guess for the Motor angle in radians (values taken from IK model for p_ee=[0,0,0.5], R_ee=[0, 0, 0])
+qm = np.array([0.48785652,
+                0.48785652,
+                0.42037453,
+                0.28121425,
+                0.28121425,
+                0.42037453])  #in degrees
 
+#universal joint angle initialization
+qi = np.array([0,0,
+               0,0,
+               0,0,
+               0,0,
+               0,0,
+               0,0])
 
-#### Constrained Jacobian
+#initializing the guess vector for the FK model
+init_guess = np.concatenate([np.zeros(24),qi,p_ee,R_ee]) #42 variables
+p_ee, R_ee = Forward_Kinetostatic(init_guess, qm)
+
+Optimized pose of the EE: p_ee=[9.21906358e-09 7.30108121e-04 4.97398602e-01] and R_ee=[ 1.77036209e-01 -3.45502705e-08  2.06590012e-08]
+
+´´´
+
+#### Trajectory comparison
 To get the Jacobian $`\mathbf{J}`$ as product of the inverted work space Jacobian $`\mathbf{J}_x`$ and the joint space Jacobian $`\mathbf{J}_q`$:
 
 ```jl
