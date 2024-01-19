@@ -506,7 +506,7 @@ InteractivePlot = False #for an interactive plot
 ###########################################################################################################
 '''Inverse Kinetostatic (IK) formulation'''
 
-p_ee = np.array([0,0,0.4]) #position of center of the end-effector position in world coordinate
+p_ee = np.array([0,0,0.5]) #position of center of the end-effector position in world coordinate
 angles = np.array([np.deg2rad(0),np.deg2rad(0),np.deg2rad(0)]) #orientation of the end-effector platform about x,y,z axis in world coordinate
 
 #initializing the actuator variables + universal joint values for each rod--> q=[q1, q2, q3] 
@@ -529,11 +529,11 @@ qdeg = []
 #unpacking the optimized actuator values
 for i in range(6):
     qrad.append(optimised_states[3*i+24:3*i+27])
-for i in range(len(qrad)):
-    qdeg.append(np.rad2deg(qrad[i]))
+# for i in range(len(qrad)):
+#     qdeg.append(np.rad2deg(qrad[i]))
 
-qdeg = np.array(qdeg) #actuator joint angles +universal joint angles in degrees
-print(f"Optimised joint angles: {qdeg}")
+# qdeg = np.array(qdeg) #actuator joint angles +universal joint angles in degrees
+print(f"Optimised joint angles: {qrad}")
 
 #########################################################################################################################
 '''Data acquisition and plotting functions'''
