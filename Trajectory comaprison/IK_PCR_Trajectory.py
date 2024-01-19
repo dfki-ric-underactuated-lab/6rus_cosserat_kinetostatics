@@ -152,8 +152,6 @@ def Inverse_Kinetostatic(p_ee, angles, init_guess, RPY=False):
 
 ####################################################################################################################
     '''Formulation of the shooting method'''
-
-    restrack = []   #records the residual vector
     counter = 0     #counter variable for the optimisation loop
 
     def residual_function(guess):
@@ -164,7 +162,6 @@ def Inverse_Kinetostatic(p_ee, angles, init_guess, RPY=False):
         # print(counter)
         
         residual = np.empty(42) #vector to concatenate the constraint equations
-        res_mag = np.empty(14) #store the residual vector magnitude
         EF = F
         EM = M
 
@@ -209,19 +206,14 @@ def Inverse_Kinetostatic(p_ee, angles, init_guess, RPY=False):
             mL = Y[15:18, -1]           #extract the moment at the tip of the rod 
             # print(f"pL_shot: {R_ee.shape}")
             residual[6*i:6*i+3] = pL_shot - r[i]    #residual for the position error
-            res_mag[2*i] = np.linalg.norm(residual[6*i:6*i+3])
             residual[6*i+3:6*i+6] = Ree.T @ mL      #residual for the moment error for spherical joint
-            res_mag[2*i+1] = np.linalg.norm(residual[6*i+3:6*i+6])  
             
             #F and M respectively = 0
             EF = EF - nL
             EM = EM - (mL + np.cross(r[i],nL))
         
         residual[36:39] = EF    #residual for the external force balance
-        res_mag[12] = np.linalg.norm(residual[36:39])
         residual[39:42] = EM    #residual for the external moment balance
-        res_mag[13] = np.linalg.norm(residual[39:42])
-        restrack.append(res_mag)
         # print(f"residual vector: {residual}")
         # print(f"residual magnitude: {np.linalg.norm(residual)}")
         return residual #residual vector for the system
@@ -281,7 +273,7 @@ def Inverse_Kinetostatic(p_ee, angles, init_guess, RPY=False):
 
        
     #return variables for analysis
-    return sol, restrack[-1], total_time
+    return sol, total_time
 
 
 
@@ -361,9 +353,9 @@ while i<len(p_ee):
     print(i) #print the sample number
 
     #excuting the IK function
-    optimised_states, restrack, total_time = Inverse_Kinetostatic(p_ee[i], angles, init_guess, RPY=True)
+    optimised_states, total_time = Inverse_Kinetostatic(p_ee[i], angles, init_guess, RPY=True)
     # print(f"optimised_states: {restrack.shape}")
-    IK_vec.append(np.concatenate(([total_time, optimised_states[24]],[optimised_states[27]],[optimised_states[30]],[optimised_states[33]],[optimised_states[36]],[optimised_states[39]], p_ee[i],restrack.flatten())))
+    IK_vec.append(np.concatenate(([total_time, optimised_states[24]],[optimised_states[27]],[optimised_states[30]],[optimised_states[33]],[optimised_states[36]],[optimised_states[39]], p_ee[i])))
     # print(f"linAct_error: {linAct_error}")
     # init_guess = optimised_states
     i+=1
