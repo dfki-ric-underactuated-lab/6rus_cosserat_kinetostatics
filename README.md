@@ -94,7 +94,7 @@ Optimized pose of the EE: p_ee=[9.21906358e-09 7.30108121e-04 4.97398602e-01] an
   <img src="./Images/helical2.gif" alt="Helical Trajectory following GIF" width="400" style="float: center; margin-right: 20px;">
   <div style="float: left;">
     <img src="./Images/paper31a.png" alt="Top Image" width="400" style="display: block; margin-bottom: 10px;">
-    <img src="./Images/paper31a.png" alt="Bottom Image" width="400">
+    <img src="./Images/paper31b.png" alt="Bottom Image" width="400">
   </div>
 </div>
 
