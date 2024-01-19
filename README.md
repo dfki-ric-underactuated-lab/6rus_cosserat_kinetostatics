@@ -137,7 +137,7 @@ generate_random_points_inside_circle(radius, num_points, height)
 #find the IK solution for each of the generated samples using 
 Workspace(p_ee[i], R_ee, init_guess)
 ```
-Function `Workspace` stores the residual values in an excel file. This excel file contains columns for computational time (`total_time`), motor angles (`q1_vec`), universal joint angles (`q2_vec` and `q3_vec`), sample position of end-effector (`p_ee[i]`), and the residual vector for each sample (`restrack`). The excel file is then passed to the `workspace_analysis()` function where the reachable workspace is filtered and visualized based on the tolerance values (`restrack`).
+Function `Workspace` stores the residual values in an excel file. This excel file contains columns for computational time `total_time`, motor angles `q1_vec`, universal joint angles `q2_vec` and `q3_vec`, sample position of end-effector `p_ee[i]`, and the residual vector for each sample `restrack`. The excel file is then passed to the `workspace_analysis` function where the reachable workspace is filtered and visualized based on the tolerance values `restrack`.
 ```py
 
 ```
