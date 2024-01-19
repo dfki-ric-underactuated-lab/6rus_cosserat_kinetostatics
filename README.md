@@ -5,7 +5,7 @@ elastic kinematic links connected in parallel between the end-effector (EE) and
 the base platform. PCRs are actuated primarily through large deflections of the
 interconnected elastic links unlike by rigid joints in rigid parallel mechanisms.
 In this work, Cosserat rod theory-based forward and inverse kinetostatic models
-of $6-\overline{R}US PCR$ are proposed. A set of simulations are performed to analyze the
+of $6-\overline{R}$US PCR$ are proposed. A set of simulations are performed to analyze the
 proposed PCR structure which includes maneuverability in 3-dimensional space
 through trajectory following, deformation effects due to the planar rotation of the
 EE platform, and axial stiffness evaluation at the EE.
@@ -121,7 +121,7 @@ init_guess = np.concatenate([np.zeros(24),qi,p_ee,R_ee]) #42 variables
 FK_vec = Forward_Kinetostatic_traj(motor_angle[i], init_guess)
 ```
 ### Workspace analysis
-In this section, a reachable workspace is estimated for a $6-\overline{R}US PCR$. Estimating a workspace means that finding solutions for the boundary value problem within the tolerance for the boundary conditions defined for the PCR. Due to redundancy in the elastic rod, just providing the joint angles will give a different solution. The computational time taken by the boundary value problem is also large
+In this section, a reachable workspace is estimated for a $6-\overline{R}$US PCR. Estimating a workspace means that finding solutions for the boundary value problem within the tolerance for the boundary conditions defined for the PCR. Due to redundancy in the elastic rod, just providing the joint angles will give a different solution. The computational time taken by the boundary value problem is also large
 as it needs to estimate the pose of the end-effector. So IK model is used to find a solution for heuristically provided sampled points from a cylindrical volume which represents the EE position in Cartesian space. For each sample point, IK solution is calculated, and then based on the boundary condition tolerances, only valid solutions are considered as part of the reachable workspace. For total 4000 samples, the mean computational time for the workspace samples is estimated to be 3.82 seconds with standard deviation of 1.15 seconds. The total time required for the computation of 4000 samples is estimated to be 16.5 hours. The mass of the end-effector is considered negligible for this simulation and orientation at the end-effector is also considered constant as `Ree=[0,0,0]`. The tolerance of `5e-10 units` is considered for all terms in the residual vector `residual`
 
 <p align="center">
