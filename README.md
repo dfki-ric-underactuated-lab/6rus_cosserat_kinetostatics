@@ -1,8 +1,8 @@
 # 6rus_cosserat_kinetostatics
 
-<p align="center">
+<!-- <p align="center">
   <img src="./Images/helical2.gif" alt="Helical Trajectory following GIF" width="400">
-</p>
+</p> -->
 
 ## Abstract:
 Parallel Continuum Robots (PCR) are closed-loop mechanisms but use
@@ -23,7 +23,6 @@ EE platform, and axial stiffness evaluation at the EE.
 +The libraries used were tested successfully in Python3.8.16
 
 ## Introduction
-
 <p align="center">
   <img src="./Images/PCR_schematic.png" alt="Conceptual design of $`6\overline{R}`$US Parallel Continuum Robot" width="800"/>
 </p>
