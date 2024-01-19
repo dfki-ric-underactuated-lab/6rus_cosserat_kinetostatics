@@ -14,7 +14,7 @@ EE platform, and axial stiffness evaluation at the EE.
 - Vinay Rodrigues [rodriguesvinay10@gmail.com](mailto:rodriguesvinay10@gmail.com)
 - Bingbin Yu [bingbin.yu@dfki.de](mailto:bingbin.yu@dfki.de)
 
-### Prequisites
+## Prequisites
 +The libraries used were tested successfully in Python3.8.16
 
 ## Introduction
@@ -122,11 +122,24 @@ FK_vec = Forward_Kinetostatic_traj(motor_angle[i], init_guess)
 ```
 ### Workspace analysis
 In this section, a reachable workspace is estimated for a 6-\overbar{R}US PCR. Estimating a workspace means that finding solutions for the boundary value problem within the tolerance for the boundary conditions defined for the PCR. Due to redundancy in the elastic rod, just providing the joint angles will give a different solution. The computational time taken by the boundary value problem is also large
-as it needs to estimate the pose of the end-effector. So IK model is used to find a solution for heuristically provided sampled points from a cylindrical volume which represents the EE position in Cartesian space. For each sample point, IK solution is calculated, and then based on the boundary condition tolerances, only valid solutions are considered as part of the reachable workspace. For total 4000 samples, the mean computational time for the workspace samples is estimated to be 3.82 seconds with standard deviation of 1.15 seconds. The total time required for the computation of 4000 samples is estimated to be 16.5 hours.
+as it needs to estimate the pose of the end-effector. So IK model is used to find a solution for heuristically provided sampled points from a cylindrical volume which represents the EE position in Cartesian space. For each sample point, IK solution is calculated, and then based on the boundary condition tolerances, only valid solutions are considered as part of the reachable workspace. For total 4000 samples, the mean computational time for the workspace samples is estimated to be 3.82 seconds with standard deviation of 1.15 seconds. The total time required for the computation of 4000 samples is estimated to be 16.5 hours. The mass of the end-effector is considered negligible for this simulation and orientation at the end-effector is also considered constant as `Ree=[0,0,0]`
+
 <p align="center">
   <img src="./Images/workspace_rod.png" alt="test" width="600"/>
 </p>
 
+```py
+ee_mass = 1e-12 #mass of the end-effector platform (Kg)
 
+#For generating samples at different radius and corresponding height:
+generate_random_points_inside_circle(radius, num_points, height)
+
+#find the IK solution for each of the generated samples using 
+Workspace(p_ee[i], R_ee, init_guess)
+```
+The functions stores the residual values in an excel file. This excel file is then passed to the `workspace_analysis()` where the reachable workspace is filtered and visualized based on the tolerance values (`restrack`).
+```py
+
+```
 ### Acknowledgements
 The work presented in this paper is supported by the PACOMA project (Grant No. ESA-TECMSM-SOW-022836) subcontracted to us by Airbus Defence \& Space GmbH (Grant No. D.4283.01.02.01) with funds from the European Space Agency. The authors also want to acknowledge John Till's GitHub [tutorial](https://github.com/JohnDTill/ContinuumRobotExamples) on PCR and his guidance on deriving the boundary condition equations for the proposed PCR.
