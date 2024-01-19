@@ -135,4 +135,4 @@ s
 ![test](./assets/torque_and_speed.png?raw=true "Comparison of torque and speed at pure inclination/ tilt")
 
 ##### Acknowledgements
-This work was partially supported from the projects VeryHuman (FKZ01IW20004) and TransFIT (FKZ 50RA1701) funded by the German Aerospace Center (DLR) with federal funds from the Federal Ministry of Education and Research (BMBF) and Federal Ministry of Economic Affairs and Energy (BMWi) respectively.
+The work presented in this paper is supported by the PACOMA project (Grant No. ESA-TECMSM-SOW-022836) subcontracted to us by Airbus Defence \& Space GmbH (Grant No. D.4283.01.02.01) with funds from the European Space Agency. The authors also want to acknowledge John Till's GitHub [tutorial](https://github.com/JohnDTill/ContinuumRobotExamples) on PCR and his guidance on deriving the boundary condition equations for the proposed PCR.
