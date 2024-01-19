@@ -4,7 +4,7 @@ Parallel Continuum Robots (PCR) are closed-loop mechanisms but use
 elastic kinematic links connected in parallel between the end-effector (EE) and
 the base platform. PCRs are actuated primarily through large deflections of the
 interconnected elastic links unlike by rigid joints in rigid parallel mechanisms.
-In this paper, Cosserat rod theory-based forward and inverse kinetostatic models
+In this work, Cosserat rod theory-based forward and inverse kinetostatic models
 of 6-RUS PCR are proposed. A set of simulations are performed to analyze the
 proposed PCR structure which includes maneuverability in 3-dimensional space
 through trajectory following, deformation effects due to the planar rotation of the
@@ -15,36 +15,25 @@ EE platform, and axial stiffness evaluation at the EE.
 - Bingbin Yu [bingbin.yu@dfki.de](mailto:bingbin.yu@dfki.de)
 
 ## Introduction
-![test](./Images/PCR_schematic.png?raw=false "CAD design of $`2S\underbar{P}U+2RSU+1U`$ mechanism")
+![test](./Images/PCR_schematic.png?raw=false "Conceptual design of $'6-\overbar{R}US'$ Parallel Continuum Robot")
 
-The here presented 2-DOF mechanism for inclination and tilt possesses two double closed-loop chains and allows increased range of motion compared to a classical $`2S\underbar{P}U+1U`$
+In this work, boundary conditions for both IK and FK are formulated for a 6-RUS PCR using Cosserat rod theory. A shooting method is used to iteratively solve the IVP by updating the guessed variables till the boundary value constraints are within the desired tolerance. The kinetostatic model has been analysed on a different aspect in simulation. Trajectory simulation shows the FK was able to find a solution with an error of the order $1\times10^{-7}$ under constant load condition of 5 N for a helical trajectory. Maximum load capacity and axial stiffness is estimated for the PCR by applying compressing forces at the EE. The solution for different EE rotation is studied to evalute the range of motion for the PCR. A reachable workspace is estimated for the proposed PCR using the IK model. Motor angles range for each rod are also visualised for the reachable workspace. The future work includes experimental validation of this model on the physical prototype. 
 
 ## Installation
 ```jl
 pkg> add NovelWrist
 ```
 
-## Documentation
-### Create a new design 
-![test](./assets/kinematic_model.png?raw=true "kinematic model")
+## Working of the code
+### Kinetostatic model 
+## Inverse Kinetostatic (IK) model:
+IK model can be described as $'\textbf{q}_1=IK(\textbf{p}_e,\textbf{R}_e,\\\textbf{F},\textbf{M},\textbf{B}_{IK},\textbf{H}_0)'$ where vector $'\textbf{q}_1'$ consists of actuator variables and $'\textbf{B}_{IK}'$ contains the unknown variables for the system for the IK model.
+In IK, additionally $'q_{1i}$, $q_{2i}'$, and $'q_{3i}'$ is included as unknown variables for each rod such that $'\textbf{B}_{IK} \in \mathbb{R}^{42}'$, expressed as 
+\(\textbf{B}_{IK}=[n_{x,1}(0), n_{y,1}(0), n_{z,1}(0),m_{z,1}(0),q_{11}, q_{21}, q_{31},\dots]^T\).
 
-A wrist geometry is defined by the constructor taking keyword arguments related to the geometry above. The wrist mechanism at DFKI Bremen has the following geometry:
-
-```jl
-julia> using NovelWrist
-
-julia> RH5_wrist = WristGeometry(l = (0.045, 0.045), 
-                    	         r = (0.049, 0.049), 
-                          	 r_ = (0.049, 0.049),
-                          	 h = (0.012, 0.012),
-                        	 b = ([0.015, -0.178, -0.034], [-0.015, -0.178, -0.034]),
-                          	 c = ([0.015, -0.032, 0.011], [-0.015, -0.032, 0.011]),
-                          	 e0 = ([0.027, 0, -0.030], [-0.027, 0, -0.030]),
-                          	 n = ([1, 0, 0], [-1, 0, 0]),
-                          	 actuator_limits = ((0.113, 0.178), (0.113, 0.178))); 
-```
-
-The actuator limits denote the minimum and maximum values that can be reached by the linear actuators, denoted as `q` in the kinematic model. Presented function calls are executed for the assembly mode of `RH5_wrist` (`solution = [1,2]`) but can be altered. **Note that the normal vector** `n` **has to point outwards on both sides of the mechanism**.
+## Forward Kinetostatic (FK) model:
+Similarly, for the FK model can be described as function $\textbf{p}_e, \textbf{R}_e =FK(\textbf{q}_1,\textbf{F},\textbf{M},\textbf{B}_{FK},\textbf{H}_0)$) where $\textbf{B}_{FK}$ contains the unknown variables for the system for the FK model. In this case, $\textbf{p}_e$, $\textbf{R}_e$, $q_{2i}$, and $q_{3i}$ is considered as unknown variables such that $\textbf{B}_{FK} \in \mathbb{R}^{42}$ for the coupled system is given by:
+\(\textbf{B}_{FK}=[n_{x,1}(0), n_{y,1}(0), n_{z,1}(0),m_{z,1}(0),q_{21}, q_{31},\dots,\textbf{p}_e, \textbf{R}_e]^T\).
 
 ### Kinematics
 #### Inverse Kinematics 
