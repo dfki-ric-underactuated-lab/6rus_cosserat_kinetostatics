@@ -76,8 +76,7 @@ init_guess = np.concatenate([np.zeros(24),qi,p_ee,R_ee]) #42 variables
 p_ee, R_ee = Forward_Kinetostatic(init_guess, qm)
 
 Optimized pose of the EE: p_ee=[9.21906358e-09 7.30108121e-04 4.97398602e-01] and R_ee=[ 1.77036209e-01 -3.45502705e-08  2.06590012e-08]
-
-´´´
+```
 
 #### Trajectory comparison
 To get the Jacobian $`\mathbf{J}`$ as product of the inverted work space Jacobian $`\mathbf{J}_x`$ and the joint space Jacobian $`\mathbf{J}_q`$:
