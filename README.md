@@ -37,7 +37,7 @@ initial states of the rod:
 `pi0`: base position of the flexible rod.
 `Ri0`: orientation at the base of the flexible rod.
 `ni(0)`: internal forces acting at the base of the rod.
-`mi(0)`: internal moments acting at the base of the rod.
+`mi(0)`: internal moments acting at the base of the rod.g
 
 File path: `./Inverse_forward kinetostatic/IK_PCR_ROD.py`
 
