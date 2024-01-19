@@ -19,31 +19,19 @@ EE platform, and axial stiffness evaluation at the EE.
 
 In this work, boundary conditions for both IK and FK are formulated for a 6-RUS PCR using Cosserat rod theory. A shooting method is used to iteratively solve the IVP by updating the guessed variables till the boundary value constraints are within the desired tolerance. The kinetostatic model has been analysed on a different aspect in simulation. Trajectory simulation shows the FK was able to find a solution with an error of the order $1\times10^{-7}$ under constant load condition of 5 N for a helical trajectory. Maximum load capacity and axial stiffness is estimated for the PCR by applying compressing forces at the EE. The solution for different EE rotation is studied to evalute the range of motion for the PCR. A reachable workspace is estimated for the proposed PCR using the IK model. Motor angles range for each rod are also visualised for the reachable workspace. The future work includes experimental validation of this model on the physical prototype. 
 
-## Installation
-```jl
-pkg> add NovelWrist
-```
 
-## Working of the code
-### Kinetostatic model 
-## Inverse Kinetostatic (IK) model:
-IK model can be described as $'\textbf{q}_1=IK(\textbf{p}_e,\textbf{R}_e,\\\textbf{F},\textbf{M},\textbf{B}_{IK},\textbf{H}_0)'$ where vector $'\textbf{q}_1'$ consists of actuator variables and $'\textbf{B}_{IK}'$ contains the unknown variables for the system for the IK model.
-In IK, additionally $'q_{1i}$, $q_{2i}'$, and $'q_{3i}'$ is included as unknown variables for each rod such that $'\textbf{B}_{IK} \in \mathbb{R}^{42}'$, expressed as 
-\(\textbf{B}_{IK}=[n_{x,1}(0), n_{y,1}(0), n_{z,1}(0),m_{z,1}(0),q_{11}, q_{21}, q_{31},\dots]^T\).
+## Kinetostatic model 
+### Inverse Kinetostatic (IK) model:
 
-## Forward Kinetostatic (FK) model:
-Similarly, for the FK model can be described as function $\textbf{p}_e, \textbf{R}_e =FK(\textbf{q}_1,\textbf{F},\textbf{M},\textbf{B}_{FK},\textbf{H}_0)$) where $\textbf{B}_{FK}$ contains the unknown variables for the system for the FK model. In this case, $\textbf{p}_e$, $\textbf{R}_e$, $q_{2i}$, and $q_{3i}$ is considered as unknown variables such that $\textbf{B}_{FK} \in \mathbb{R}^{42}$ for the coupled system is given by:
-\(\textbf{B}_{FK}=[n_{x,1}(0), n_{y,1}(0), n_{z,1}(0),m_{z,1}(0),q_{21}, q_{31},\dots,\textbf{p}_e, \textbf{R}_e]^T\).
+```py
+x = [0, 0]; # angles in rad  
 
-### Kinematics
-#### Inverse Kinematics 
-Computation of the actuator length from a given pose defined by *inclination* ($`\alpha`$) and *tilt* ($`\gamma`$). Note that 'solution' defines which intersection points to pick from both sides of the circle-sphere intersectio. All functions consider *intrinsic* rotation of the end-effector but it can be changed via `intrinsic = false`.
-
-```jl
-julia> x = [0, 0]; # angles in rad  
-
-julia> q = inverse_kinematics(x, RH5_wrist; solution = [1,2])
+qm = Inverse_Kinetostatic(p_ee, angles, init_guess, RPY=True)
 2-element Vector{Real}:
+ 0.13347357815533836
+ 0.13347357815533836
+ 0.13347357815533836
+ 0.13347357815533836
  0.13347357815533836
  0.13347357815533836
 ```
