@@ -14,6 +14,9 @@ EE platform, and axial stiffness evaluation at the EE.
 - Vinay Rodrigues [rodriguesvinay10@gmail.com](mailto:rodriguesvinay10@gmail.com)
 - Bingbin Yu [bingbin.yu@dfki.de](mailto:bingbin.yu@dfki.de)
 
+### Prequisites
++The libraries used were tested successfully in Python3.8.16
+
 ## Introduction
 <p align="center">
   <img src="./Images/PCR_schematic.png" alt="Conceptual design of $'6-\overbar{R}US'$ Parallel Continuum Robot" width="800"/>
