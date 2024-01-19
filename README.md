@@ -79,10 +79,10 @@ Optimized pose of the EE: p_ee=[9.21906358e-09 7.30108121e-04 4.97398602e-01] an
 ```
 
 ### Trajectory comparison
-<div>
-  <img src="./Images/helical2.gif" alt="Helical Trajectory following GIF" width="400">
+<!-- <div> -->
+  <!-- <img src="./Images/helical2.gif" alt="Helical Trajectory following GIF" width="400">
   <img src="./Images/paper31.png?raw=false" alt="Trajectory plot" width="400">
-</div>
+</div> -->
 <!-- <div>
   <img src="./Images/helical2.gif" alt="Helical Trajectory following GIF" width="400">
   <div style="float: right;">
@@ -90,13 +90,13 @@ Optimized pose of the EE: p_ee=[9.21906358e-09 7.30108121e-04 4.97398602e-01] an
     <img src="./Images/paper31a.png" alt="Bottom Image" width="200">
   </div> -->
 
-<!-- <div>
+<div>
   <img src="./Images/helical2.gif" alt="Helical Trajectory following GIF" width="400" style="float: left; margin-right: 20px;">
   <div style="float: left;">
-    <img src="./Images/paper31a.png" alt="Top Image" width="200" style="display: block; margin-bottom: 10px;">
-    <img src="./Images/paper31a.png" alt="Bottom Image" width="200">
+    <img src="./Images/paper31a.png" alt="Top Image" width="400" style="display: block; margin-bottom: 10px;">
+    <img src="./Images/paper31a.png" alt="Bottom Image" width="400">
   </div>
-</div> -->
+</div>
 
 In this simulation, the FK model is validated by comparing the obtained solution of the EE position with samples from a reference helical trajectory under a constant load of 5 N at the EE. Euclidean distance is calculated to measure the error between the FK model and the reference trajectory. The error is of the order $1\times10^{-7}$ for the samples which shows the validity of the boundary conditions for the FK model for the PCR.
 ```py
