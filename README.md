@@ -29,15 +29,16 @@ EE platform, and axial stiffness evaluation at the EE.
 In this work, boundary conditions for both IK and FK are formulated for a $`6\overline{R}`$US PCR using Cosserat rod theory. A shooting method is used to iteratively solve the IVP by updating the guessed variables till the boundary value constraints are within the desired tolerance. The kinetostatic model has been analysed on a different aspect in simulation. Trajectory simulation shows the FK was able to find a solution with an error of the order $1\times10^{-7}$ under constant load condition of 5 N for a helical trajectory. Maximum load capacity and axial stiffness is estimated for the PCR by applying compressing forces at the EE. The solution for different EE rotation is studied to evalute the range of motion for the PCR. A reachable workspace is estimated for the proposed PCR using the IK model. Motor angles range for each rod are also visualised for the reachable workspace. The future work includes experimental validation of this model on the physical prototype. 
 
 
-## Kinetostatic model 
+## Kinetostatic model
+initial states of the rod: 
+`pi0`: base position of the flexible rod,
+`Ri0`: orientation at the base of the flexible rod,
+`ni(0)`: internal forces acting at the base of the rod,
+`mi(0)`: internal moments acting at the base of the rod.
+
 ### Inverse Kinetostatic (IK) model: 
 For the given pose of the end-effector `p_ee` and `R_ee`, external force `F` and moment `M` acting at the end-effector, initial states of the rod, and unknown variable vector `init_guess`, then `Inverse_Kinetostatic` function computes the motor angles that minimizes the residual vector `residual`. `q1i`, `q2i`, and `q3i` are the motor angles, and universal joints angles respectively whereas `ni_x(0), ni_y(0), ni_z(0), mi_z(0)` are the internal forces and moments at the base of the flexible link which are unknown. Due to universal joints at the base of the rod, mi_x(0)=mi_y(0)=0.
 
-initial states of the rod: 
-`pi0`: base position of the flexible rod.
-`Ri0`: orientation at the base of the flexible rod.
-`ni(0)`: internal forces acting at the base of the rod.
-`mi(0)`: internal moments acting at the base of the rod.g
 
 File path: `./Inverse_forward kinetostatic/IK_PCR_ROD.py`
 
@@ -69,8 +70,9 @@ q1 = Inverse_Kinetostatic(p_ee, R_ee, init_guess)
 ```
 
 ### Forward Kinetostatic (FK) model:
+For a given motor angle `q1i`, external force `F` and moment `M` acting at the end-effector, initial states of the rod, and unknown variable vector `init_guess`, then `Forward_Kinetostatic` function computes the pose of the end-effector, `p_ee` and `R_ee` that minimizes the `residual`. 
+
 ```py
-For a given 
 #intial guess for the pose of the end-effector
 p_ee = np.array([0,0,0.4])
 R_ee = np.array([np.deg2rad(0), np.deg2rad(0), np.deg2rad(0)])
@@ -83,7 +85,7 @@ qm = np.array([0.48785652,
                 0.28121425,
                 0.42037453])  #in degrees
 
-#universal joint angle initialization
+#universal joint angle initialization in radians
 qi = np.array([0,0,
                0,0,
                0,0,
@@ -92,10 +94,13 @@ qi = np.array([0,0,
                0,0])
 
 #initializing the guess vector for the FK model
+#init_guess = [n1_x(0), n1_y(0), n1_z(0), m1_z(0),...,n6_x(0), n6_y(0), n6_z(0), m6_z(0), q2i, q3i,...,q26, q36, p_ee, R_ee] #42 variables
 init_guess = np.concatenate([np.zeros(24),qi,p_ee,R_ee]) #42 variables
 p_ee, R_ee = Forward_Kinetostatic(init_guess, qm)
 
-Optimized pose of the EE: p_ee=[9.21906358e-09 7.30108121e-04 4.97398602e-01] and R_ee=[ 1.77036209e-01 -3.45502705e-08  2.06590012e-08]
+Optimized pose of the EE: 
+p_ee=[9.21906358e-09 7.30108121e-04 4.97398602e-01] 'and' R_ee=[ 1.77036209e-01 -3.45502705e-08  2.06590012e-08]
+
 ```
 
 ### Trajectory comparison
