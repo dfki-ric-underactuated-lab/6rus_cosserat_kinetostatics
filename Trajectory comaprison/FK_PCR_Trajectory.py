@@ -153,13 +153,11 @@ def Forward_Kinetostatic(qm, init_guess):
 ####################################################################################################################
     '''Formulation of the shooting method'''
 
-    restrack = [] #records the residual vector
 
     def residual_function(guess):
         '''objective function aka cost function'''
         # Update guessed initial conditions
         residual = np.empty(42) #42 constraint equations
-        res_mag = np.empty(14) #store the residual vector magnitude
         EF = F
         EM = M
         for i in range(6):
@@ -202,21 +200,16 @@ def Forward_Kinetostatic(qm, init_guess):
             mL = Y[15:18, -1]           #extract the moment at the tip of the rod
             # print(f"pL_shot: {R_ee.shape}")
             residual[6*i:6*i+3] = pL_shot - r[i]    #residual for the position error
-            res_mag[2*i] = np.linalg.norm(residual[6*i:6*i+3])
             residual[6*i+3:6*i+6] = R_ee.T @ mL      #residual for the moment error for spherical joint
-            res_mag[2*i+1] = np.linalg.norm(residual[6*i+3:6*i+6]) 
             
             #F and M respectively = 0
             EF = EF - nL
             EM = EM - (mL + np.cross(r[i],nL))
         
         residual[36:39] = EF    #residual for the external force balance
-        res_mag[12] = np.linalg.norm(residual[36:39])
         residual[39:42] = EM    #residual for the external moment balance
-        res_mag[13] = np.linalg.norm(residual[39:42])
         # print(f"residual vector: {residual}")
         # print(f"residual magnitude: {np.linalg.norm(residual)}")
-        restrack.append(res_mag)
         return residual #Error vector
     
     def rod_ode(s, y):
@@ -278,9 +271,9 @@ def Forward_Kinetostatic(qm, init_guess):
     ptrack = stores the states of each leg for every iteration of the optimization
     '''
     
-    return sol, total_time, restrack[-1],qm, F
+    return sol, total_time, qm, F
 
-
+######################################################################################################################
 
 
 def save_excel(path, valid_array):
@@ -388,12 +381,7 @@ saveData_bool=True #saving data to an excel file
 ls_value = []
 FK_vec = []#pee calculated from FK
 
-# Read the joint angles from the saved IK Excel file
-df = pd.read_excel('/home/dfki.uni-bremen.de/vrodrigues/6_rus_Stewart_platform/Simulation/Flexible_links/Cosserat_rod_theory/excel_files/Trajectories/PACOMA_IK_trajec_helical_5N_ROD_test.xlsx', header=None)
-df_m = df.iloc[:, 1:7]  #unpack the motor angles
-# Convert each row into a NumPy array
-motor_angle = [np.array(row) for _, row in df_m.iterrows()]
-motor_angle = np.array(motor_angle) #motor angles for FK
+
 
 #intial guess for the pose of the end-effector
 p_ee = np.array([0.25,0,0.4])#pee for FK
@@ -407,6 +395,14 @@ qi = np.array([0,0,
                0,0,
                0,0])
 
+'''For trajectory comparison'''
+# Read the joint angles from the saved IK Excel file
+df = pd.read_excel('/home/dfki.uni-bremen.de/vrodrigues/6_rus_Stewart_platform/Simulation/Flexible_links/Cosserat_rod_theory/excel_files/Trajectories/PACOMA_IK_trajec_helical_5N_ROD_test.xlsx', header=None)
+df_m = df.iloc[:, 1:7]  #unpack the motor angles
+# Convert each row into a NumPy array
+motor_angle = [np.array(row) for _, row in df_m.iterrows()]
+motor_angle = np.array(motor_angle) #motor angles for FK
+
 #initializing the guess vector for the FK model
 init_guess = np.concatenate([np.zeros(24),qi,p_ee,R_ee]) #42 variables
 i =0
@@ -417,12 +413,14 @@ while i < len(motor_angle):
     # L = np.array([0.43218561, 6.1670081 , 2.17345386, 0.43806599, 1.40285005 ,0.61917025]) #known actuator vaues Li = qi + li
     print(i)
     # print(motor_angle[i])
-    optimised_states, total_time, restrack, motorangle, F = Forward_Kinetostatic(motor_angle[i], init_guess)
-    FK_vec.append(np.concatenate(([total_time], F, optimised_states[36:39],motorangle, restrack.flatten())))
+    optimised_states, total_time, motorangle, F = Forward_Kinetostatic(motor_angle[i], init_guess)
+    FK_vec.append(np.concatenate(([total_time], F, optimised_states[36:39],motorangle)))
     # init_guess = optimised_states
     i+=1
 
 FK_vec = np.array(FK_vec)
+
+
 save_excel('/home/dfki.uni-bremen.de/vrodrigues/6_rus_Stewart_platform/Simulation/Flexible_links/Cosserat_rod_theory/excel_files/Trajectories/PACOMA_FK_trajec_helical_5N_ROD_test.xlsx',FK_vec)
 
 FK_plots()
