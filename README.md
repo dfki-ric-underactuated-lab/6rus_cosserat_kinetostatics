@@ -20,7 +20,7 @@ EE platform, and axial stiffness evaluation at the EE.
 - Bingbin Yu [bingbin.yu@dfki.de](mailto:bingbin.yu@dfki.de)
 
 ## Prequisites
-+The libraries used were tested successfully in Python3.8.16 and Ubuntu 18.04.6 LTS. 
+The libraries used were tested successfully in Python3.8.16 and Ubuntu 18.04.6 LTS. 
 
 ## Introduction
 <p align="center">
@@ -37,7 +37,7 @@ initial states of the rod:
 `mi(0)`: internal moment acting at the base of the rod.
 
 ### Inverse Kinetostatic (IK) model: 
-For the given pose of the end-effector `p_ee` and `R_ee`, external force `F` and moment `M` acting at the end-effector, initial states of the rod, and unknown variable vector `init_guess`, then `Inverse_Kinetostatic` function computes the motor angles that minimizes the residual vector `residual`. `q1i`, `q2i`, and `q3i` are the motor angles, and universal joints angles respectively whereas `ni_x(0), ni_y(0), ni_z(0), mi_z(0)` are the internal forces and moments at the base of the flexible link which are unknown. Due to universal joints at the base of the rod, `mi_x(0)=mi_y(0)=0`.
+For the given pose of the end-effector `p_ee` and `R_ee`, external force `F` and moment `M` acting at the end-effector, initial states of the rod, and unknown variable vector `init_guess`, then `Inverse_Kinetostatic()` function computes the motor angles that minimizes the residual vector `residual`. `q1i`, `q2i`, and `q3i` are the motor angles, and universal joints angles respectively whereas `ni_x(0), ni_y(0), ni_z(0), mi_z(0)` are the internal forces and moments at the base of the flexible link which are unknown. Due to universal joints at the base of the rod, `mi_x(0)=mi_y(0)=0`.
 
 
 File path: `./Inverse_forward kinetostatic/IK_PCR_ROD.py`
@@ -70,14 +70,14 @@ q1 = Inverse_Kinetostatic(p_ee, R_ee, init_guess)
 ```
 
 ### Forward Kinetostatic (FK) model:
-For a given motor angle `q1i`, external force `F` and moment `M` acting at the end-effector, initial states of the rod, and unknown variable vector `init_guess`, then `Forward_Kinetostatic` function computes the pose of the end-effector, `p_ee` and `R_ee` that minimizes the `residual`. 
+For a given motor angle `q1i`, external force `F` and moment `M` acting at the end-effector, initial states of the rod, and unknown variable vector `init_guess`, then `Forward_Kinetostatic()` function computes the pose of the end-effector, `p_ee` and `R_ee` that minimizes the `residual`. 
 
 File path: `./Inverse_forward kinetostatic/FK_PCR_ROD.py`
 
 ```py
 #intial guess for the pose of the end-effector
-p_ee = np.array([0,0,0.4])
-R_ee = np.array([np.deg2rad(0), np.deg2rad(0), np.deg2rad(0)])
+p_ee = np.array([0,0,0.4]) #m
+R_ee = np.array([np.deg2rad(0), np.deg2rad(0), np.deg2rad(0)]) #radians
 
 #intial guess for the Motor angle in radians (values taken from IK model for p_ee=[0,0,0.5], R_ee=[0, 0, 0])
 qm = np.array([0.48785652,
@@ -85,7 +85,7 @@ qm = np.array([0.48785652,
                 0.42037453,
                 0.28121425,
                 0.28121425,
-                0.42037453])  #in degrees
+                0.42037453]) 
 
 #universal joint angle initialization in radians
 qi = np.array([0,0,
@@ -97,7 +97,7 @@ qi = np.array([0,0,
 
 #initializing the guess vector for the FK model
 #init_guess = [n1_x(0), n1_y(0), n1_z(0), m1_z(0),...,n6_x(0), n6_y(0), n6_z(0), m6_z(0), q2i, q3i,...,q26, q36, p_ee, R_ee] #42 variables
-init_guess = np.concatenate([np.zeros(24),qi,p_ee,R_ee]) #42 variables
+init_guess = np.concatenate([np.zeros(24),qi,p_ee,R_ee])
 p_ee, R_ee = Forward_Kinetostatic(init_guess, qm)
 
 Optimized pose of the EE: 
@@ -106,17 +106,6 @@ p_ee=[9.21906358e-09 7.30108121e-04 4.97398602e-01] 'and' R_ee=[ 1.77036209e-01 
 ```
 
 ### Trajectory comparison
-<!-- <div> -->
-  <!-- <img src="./Images/helical2.gif" alt="Helical Trajectory following GIF" width="400">
-  <img src="./Images/paper31.png?raw=false" alt="Trajectory plot" width="400">
-</div> -->
-<!-- <div>
-  <img src="./Images/helical2.gif" alt="Helical Trajectory following GIF" width="400">
-  <div style="float: right;">
-    <img src="./Images/paper31a.png" alt="Top Image" width="200" style="margin-bottom: 10px;">
-    <img src="./Images/paper31a.png" alt="Bottom Image" width="200">
-  </div> -->
-
 
   <div>
     <img src="./Images/paper31a.png" alt="Top Image" width="400">
@@ -124,16 +113,24 @@ p_ee=[9.21906358e-09 7.30108121e-04 4.97398602e-01] 'and' R_ee=[ 1.77036209e-01 
 </div>
 
 In this simulation, the FK model is validated by comparing the obtained solution of the EE position with samples from a reference helical trajectory under a constant load of 5 N at the EE. Euclidean distance is calculated to measure the error between the FK model and the reference trajectory. The error is of the order $1\times10^{-7}$ for the samples which shows the validity of the boundary conditions for the FK model for the PCR.
+
+File path for the motor generation using IK model: `./Trajectory_comaprison/IK_PCR_Trajectory.py`
+
 ```py
 ee_mass = 0.5             #mass of the end-effector platform (Kg)
 
 #compute motor joint angles for samples representing the position of the EE from a
 #helical trajectory using IK model
-IK_vec = Inverse_Kinetostatic_traj(p_ee[i], angles, init_guess)
+[optimised_states, total_time] = Inverse_Kinetostatic_traj(p_ee[i], angles, init_guess)
+```
+where `optimised_states` includes optimized values of the guessed unknown vector `init_guess`, `total_time` is the computational time for a solution. `IK_vec` stores the 
+`total_time`, optimized motor angles `q1i`, and `p_ee` (`p_ee` info is redundant here) into an `excel_file.xlsx`. 
 
-#IK_vec=[optimised_states, total_time] where optimised_states
+Now, the computed `q1i` is extracted from the `excel_file.xlsx` then `Forward_Kinetostatic_traj()` function is used to compute the pose of the end-effector `p_ee` and `R_ee` which is compared with the reference helical trajectory. The error is calculated by the Euclidean distance between the two. 
 
+File path for the end-effector pose generation using FK model: `./Trajectory_comaprison/FK_PCR_Trajectory.py`
 
+```py
 #Provide these motor angles as input to FK model:
 ee_mass = 0.5             #mass of the end-effector platform (Kg)
 #initializing the guess vector for the FK model
@@ -141,6 +138,10 @@ init_guess = np.concatenate([np.zeros(24),qi,p_ee,R_ee]) #42 variables
 
 FK_vec = Forward_Kinetostatic_traj(motor_angle[i], init_guess)
 ```
+`FK_vec` stores the `total_time`, optimised pose of the end-effector `p_ee`, and `R_ee`. `Forward_Kinetostatic_traj()` plots both the trajectory comparison and Euclidean error plots using the `FK_plots()`.
+
+### Compressive force analysis and Rotation of the end-effector platform
+By changing `F` variables in `./Inverse_forward kinetostatic/IK_PCR_ROD.py`, the weight at the end-effector can be adjusted. For the rotation of the end-effector, variable `R_ee` can be adjusted by providing the orientation about `z-axis` in `./Inverse_forward kinetostatic/IK_PCR_ROD.py`.
 ### Workspace analysis
 In this section, a reachable workspace is estimated for a $`6\overline{R}`$US PCR. Estimating a workspace means that finding solutions for the boundary value problem within the tolerance for the boundary conditions defined for the PCR. Due to redundancy in the elastic rod, just providing the joint angles will give a different solution. The computational time taken by the boundary value problem is also large
 as it needs to estimate the pose of the end-effector. So IK model is used to find a solution for heuristically provided sampled points from a cylindrical volume which represents the EE position in Cartesian space. For each sample point, IK solution is calculated, and then based on the boundary condition tolerances, only valid solutions are considered as part of the reachable workspace. For total 4000 samples, the mean computational time for the workspace samples is estimated to be 3.82 seconds with standard deviation of 1.15 seconds. The total time required for the computation of 4000 samples is estimated to be 16.5 hours. The mass of the end-effector is considered negligible for this simulation and orientation at the end-effector is also considered constant as `Ree=[0,0,0]`. The tolerance of `5e-10 units` is considered for all terms in the residual vector `residual`
@@ -155,7 +156,7 @@ ee_mass = 1e-12 #mass of the end-effector platform (Kg)
 #find the IK solution for each of the generated samples using 
 Workspace(p_ee[i], R_ee, init_guess)
 ```
-Function `Workspace` stores the residual values in an excel file. This excel file contains columns for computational time `total_time`, motor angles `q1_vec`, universal joint angles `q2_vec` and `q3_vec`, sample position of end-effector `p_ee[i]`, and the residual vector for each sample `restrack`. The excel file is then passed to the `workspace_analysis` function where the reachable workspace is filtered and visualized based on the tolerance values `restrack`.
+Function `Workspace()` stores the residual values in an `excel_file.xlsx`. This `excel_file.xlsx` contains columns for computational time `total_time`, motor angles `q1_vec`, universal joint angles `q2_vec` and `q3_vec`, sample position of end-effector `p_ee[i]`, and the residual vector for each sample `restrack`. The `excel_file.xlsx` is then passed to the `workspace_analysis()` function where the reachable workspace is filtered and visualized based on the tolerance values `restrack`.
 ```py
 
 ```
