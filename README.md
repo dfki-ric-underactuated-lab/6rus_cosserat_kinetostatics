@@ -48,7 +48,7 @@ q1 = Inverse_Kinetostatic(p_ee, R_ee, init_guess)
 0.42037453
 ```
 
-#### Forward Kinematics
+### Forward Kinetostatic (FK) model:
 ```py
 
 #intial guess for the pose of the end-effector
@@ -78,70 +78,9 @@ p_ee, R_ee = Forward_Kinetostatic(init_guess, qm)
 Optimized pose of the EE: p_ee=[9.21906358e-09 7.30108121e-04 4.97398602e-01] and R_ee=[ 1.77036209e-01 -3.45502705e-08  2.06590012e-08]
 ```
 
-#### Trajectory comparison
-To get the Jacobian $`\mathbf{J}`$ as product of the inverted work space Jacobian $`\mathbf{J}_x`$ and the joint space Jacobian $`\mathbf{J}_q`$:
-
-```jl
-julia> J = Jacobian(x, RH5_wrist; specsol = [1,2] split = false)
-2×2 Matrix{Real}:
- 15.9633   15.9633
- 17.737   -17.737
-```
-When `split = true`, $`\mathbf{J}_x`$ and $`\mathbf{J}_q`$ are returned componentwise. 
-
-### Performance Analysis
-#### Conditioning
-The condition index of the novel mechanism can be plotted over `α` and `γ`:
-
-```jl
-julia> plot_conditioning(RH5_wrist, α = (-π, π), γ = (-π, π), solution = [1,2], resol = 500) # increasing resol will give a higher resolution
-```
-![test](./assets/condition_index.png?raw=true "Conditioning")
-The dashed lines indicate the workspace limits imposed by `actuator_limits`.
-
-#### Configuration Space
-The actuator lengths for plotting the the configuration space are computed for end-effector orientations between -π and π: 
-```jl
-julia> plot_configuration_space(RH5_wrist; solution = [1,2], intrinsic = true, resol = 100)
-```
-![test](./assets/c_space.png?raw=true "Configuration space")
-Here, for better visibility, the `actuator_limits` are visualized using a red rectangle. 
-
-#### Comparison to Conventional Wrist Designs
-
-Computes and plots the **difference of the condition index** between $`2S\underbar{P}U+2RSU+1U`$ and $`2S\underbar{P}U+1U`$ mechanism (positive values indicate increased dexterity of the novel design): 
-
-```jl
-julia> plot_comparative_conditioning(RH5_wrist, α = (-π, π), γ = (-π, π), solution = [1,2], resol = 400)
-```
-![test](./assets/conditioning_comparison.png?raw=true "Comparison of conditioning")
-
-
-The **singularity curves** of novel design and comparative design are obtained by sampling through the work space. Note, that in order to get closed contures, a high value for `resol` has to be set. This however increases the computing time considerably.        
-
-```jl
-julia> plot_comparative_singularities(RH5_wrist, α = (-π, π), γ = (-π, π), solution = [1,2], intrinsic = true, resol = 5000)
-```
-![test](./assets/singularities_C.png?raw=true "Comparison of singularity curves")
-The theoretically feasible work space for the novel design is denoted by the blue coloured "shadow".
-
-Plots of **Torque** and **Speed** at pure inclination and pure tilt movements can be computed. Additionally, characteristic values are printed to the console:
-
-```jl
-julia> plot_torque_C(RH5_wrist, α = (-π, π), γ = (-π, π), solution = [1,2], resol=600)
-    Pure inclination/tilt characteristics - new wrist:
-    Inclination range: -0.74/1.83 rad, 
-    Maximum inclination torque: 62.94 Nm, correspondent inclination velocity: 6.36 rad/s, 
-    Tilt range: -0.97/0.98 rad, 
-    Maximum tilt torque: 56.38 Nm, correspondent tilt velocity: 7.09 rad/s
-s
-    Pure inclination/tilt characteristics - comparative design:
-    Inclination range: -0.74/1.76 rad, 
-    Maximum inclination torque: 59.86 Nm, correspondent inclination velocity: 6.68 rad/s, 
-    Tilt range: -0.97/0.98 rad, 
-    Maximum tilt torque: 53.86 Nm, correspondent tilt velocity: 7.43 rad/s
-```
-![test](./assets/torque_and_speed.png?raw=true "Comparison of torque and speed at pure inclination/ tilt")
+### Trajectory comparison
+In this simulation, the FK model is validated by comparing the obtained solution of the EE position with samples from a reference helical trajectory under a constant load of 5 N at the EE which is depicted in Fig. \ref{trajec}a. Euclidean distance is calculated to measure the error between the FK model and the reference trajectory. As seen in Fig. \ref{trajec}b, the error is of the order $1\times10^{-7}$ for the samples which shows the validity of the boundary conditions for the FK model for the PCR.
+\begin{figure}[!ht]
 
 ##### Acknowledgements
 The work presented in this paper is supported by the PACOMA project (Grant No. ESA-TECMSM-SOW-022836) subcontracted to us by Airbus Defence \& Space GmbH (Grant No. D.4283.01.02.01) with funds from the European Space Agency. The authors also want to acknowledge John Till's GitHub [tutorial](https://github.com/JohnDTill/ContinuumRobotExamples) on PCR and his guidance on deriving the boundary condition equations for the proposed PCR.
