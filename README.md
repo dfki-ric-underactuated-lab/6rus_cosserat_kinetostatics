@@ -27,15 +27,13 @@ pkg> add NovelWrist
 ## Working of the code
 ### Kinetostatic model 
 ## Inverse Kinetostatic (IK) model:
-<!-- IK model can be described as $'\textbf{q}_1=IK(\textbf{p}_e,\textbf{R}_e,\\\textbf{F},\textbf{M},\textbf{B}_{IK},\textbf{H}_0)'$ where vector $'\textbf{q}_1'$ consists of actuator variables and $'\textbf{B}_{IK}'$ contains the unknown variables for the system for the IK model.
+IK model can be described as $'\textbf{q}_1=IK(\textbf{p}_e,\textbf{R}_e,\\\textbf{F},\textbf{M},\textbf{B}_{IK},\textbf{H}_0)'$ where vector $'\textbf{q}_1'$ consists of actuator variables and $'\textbf{B}_{IK}'$ contains the unknown variables for the system for the IK model.
 In IK, additionally $'q_{1i}$, $q_{2i}'$, and $'q_{3i}'$ is included as unknown variables for each rod such that $'\textbf{B}_{IK} \in \mathbb{R}^{42}'$, expressed as 
-\(\textbf{B}_{IK}=[n_{x,1}(0), n_{y,1}(0), n_{z,1}(0),m_{z,1}(0),q_{11}, q_{21}, q_{31},\dots]^T\). -->
+\(\textbf{B}_{IK}=[n_{x,1}(0), n_{y,1}(0), n_{z,1}(0),m_{z,1}(0),q_{11}, q_{21}, q_{31},\dots]^T\).
 
 ## Forward Kinetostatic (FK) model:
-Similarly, for the FK model, it can be described as the function \(\textbf{p}_e, \textbf{R}_e = FK(\textbf{q}_1, \textbf{F}, \textbf{M}, \textbf{B}_{FK}, \textbf{H}_0)\) where \(\textbf{B}_{FK}\) contains the unknown variables for the system for the FK model. In this case, \(\textbf{p}_e\), \(\textbf{R}_e\), \(q_{2i}\), and \(q_{3i}\) are considered as unknown variables such that \(\textbf{B}_{FK} \in \mathbb{R}^{42}\) for the coupled system is given by:
-
-\[\textbf{B}_{FK} = [n_{x,1}(0), n_{y,1}(0), n_{z,1}(0), m_{z,1}(0), q_{21}, q_{31}, \dots, \textbf{p}_e, \textbf{R}_e]^T\].
-
+Similarly, for the FK model can be described as function $\textbf{p}_e, \textbf{R}_e =FK(\textbf{q}_1,\textbf{F},\textbf{M},\textbf{B}_{FK},\textbf{H}_0)$) where $\textbf{B}_{FK}$ contains the unknown variables for the system for the FK model. In this case, $\textbf{p}_e$, $\textbf{R}_e$, $q_{2i}$, and $q_{3i}$ is considered as unknown variables such that $\textbf{B}_{FK} \in \mathbb{R}^{42}$ for the coupled system is given by:
+\(\textbf{B}_{FK}=[n_{x,1}(0), n_{y,1}(0), n_{z,1}(0),m_{z,1}(0),q_{21}, q_{31},\dots,\textbf{p}_e, \textbf{R}_e]^T\).
 
 ### Kinematics
 #### Inverse Kinematics 
