@@ -79,8 +79,8 @@ Optimized pose of the EE: p_ee=[9.21906358e-09 7.30108121e-04 4.97398602e-01] an
 ```
 
 ### Trajectory comparison
-In this simulation, the FK model is validated by comparing the obtained solution of the EE position with samples from a reference helical trajectory under a constant load of 5 N at the EE which is depicted in Fig. \ref{trajec}a. Euclidean distance is calculated to measure the error between the FK model and the reference trajectory. As seen in Fig. \ref{trajec}b, the error is of the order $1\times10^{-7}$ for the samples which shows the validity of the boundary conditions for the FK model for the PCR.
-\begin{figure}[!ht]
+In this simulation, the FK model is validated by comparing the obtained solution of the EE position with samples from a reference helical trajectory under a constant load of 5 N at the EE. Euclidean distance is calculated to measure the error between the FK model and the reference trajectory. The error is of the order $1\times10^{-7}$ for the samples which shows the validity of the boundary conditions for the FK model for the PCR.
 
+python> ee_mass = 0.5             #mass of the end-effector platform (Kg)
 ##### Acknowledgements
 The work presented in this paper is supported by the PACOMA project (Grant No. ESA-TECMSM-SOW-022836) subcontracted to us by Airbus Defence \& Space GmbH (Grant No. D.4283.01.02.01) with funds from the European Space Agency. The authors also want to acknowledge John Till's GitHub [tutorial](https://github.com/JohnDTill/ContinuumRobotExamples) on PCR and his guidance on deriving the boundary condition equations for the proposed PCR.
