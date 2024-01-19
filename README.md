@@ -106,13 +106,12 @@ p_ee=[9.21906358e-09 7.30108121e-04 4.97398602e-01] 'and' R_ee=[ 1.77036209e-01 
 ```
 
 ### Trajectory comparison
+In this simulation, the FK model is validated by comparing the obtained solution of the EE position with samples from a reference helical trajectory under a constant load of 5 N at the EE. Euclidean distance is calculated to measure the error between the FK model and the reference trajectory. The error is of the order $1\times10^{-7}$ for the samples which shows the validity of the boundary conditions for the FK model for the PCR.
 
   <div>
     <img src="./Images/paper31a.png" alt="Top Image" width="400">
     <img src="./Images/paper31b.png" alt="Bottom Image" width="400">
 </div>
-
-In this simulation, the FK model is validated by comparing the obtained solution of the EE position with samples from a reference helical trajectory under a constant load of 5 N at the EE. Euclidean distance is calculated to measure the error between the FK model and the reference trajectory. The error is of the order $1\times10^{-7}$ for the samples which shows the validity of the boundary conditions for the FK model for the PCR.
 
 File path for the motor generation using IK model: `./Trajectory_comaprison/IK_PCR_Trajectory.py`
 
