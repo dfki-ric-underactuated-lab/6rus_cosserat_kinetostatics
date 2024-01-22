@@ -1,7 +1,7 @@
 # 6rus_cosserat_kinetostatics
 <div>
-    <img src="./Images/helical2.gif" alt="Helical Trajectory following GIF" width="400">
-    <img src="./Images/helical2.gif" alt="Circular Trajectory following GIF" width="400">
+    <img src="./Images/helical.gif" alt="Helical Trajectory following GIF" width="400">
+    <img src="./Images/circular.gif" alt="Circular Trajectory following GIF" width="400">
 </div>
 <!-- <p align="center">
   <img src="./Images/helical2.gif" alt="Helical Trajectory following GIF" width="400">
