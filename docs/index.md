@@ -1,8 +1,10 @@
 ---
-title: "Fast Dynamic Walking with RH5 Humanoid Robot"
+title: "Kinetostatic Analysis for 6RUS Parallel Continuum
+Robot using Cosserat Rod Theory"
 
-pdf: https://www.researchgate.net/publication/376186142_Fast_Dynamic_Walking_with_RH5_Humanoid_Robot
-youtube: https://www.youtube.com/watch?v=39GL2vPedGY&ab_channel=GermanResearchCenterforArtificialIntelligence
+Github: https://github.com/dfki-ric-underactuated-lab/6rus_cosserat_kinetostatics
+# pdf: https://www.researchgate.net/publication/376186142_Fast_Dynamic_Walking_with_RH5_Humanoid_Robot
+# youtube: https://www.youtube.com/watch?v=39GL2vPedGY&ab_channel=GermanResearchCenterforArtificialIntelligence
 
 authors:
   - {name: Ivan Bergonzani, affiliation_key: 1, link: https://robotik.dfki-bremen.de/de/ueber-uns/mitarbeiter/ivbe01.html}
