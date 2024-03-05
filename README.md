@@ -8,15 +8,8 @@
 </p> -->
 
 ## Abstract:
-Parallel Continuum Robots (PCR) are closed-loop mechanisms but use
-elastic kinematic links connected in parallel between the end-effector (EE) and
-the base platform. PCRs are actuated primarily through large deflections of the
-interconnected elastic links unlike by rigid joints in rigid parallel mechanisms.
-In this work, Cosserat rod theory-based forward and inverse kinetostatic models
-of $`6\overline{R}`$US PCR are proposed. A set of simulations are performed to analyze the
-proposed PCR structure which includes maneuverability in 3-dimensional space
-through trajectory following, deformation effects due to the planar rotation of the
-EE platform, and axial stiffness evaluation at the EE.
+Parallel Continuum Robots (PCR) are closed-loop mechanisms but use elastic kinematic links connected in parallel between the end-effector (EE) and the base platform. PCRs are actuated primarily through large deflections of the interconnected elastic links unlike by rigid joints in rigid parallel mechanisms.
+In this paper, Cosserat rod theory-based forward and inverse kinetostatic models of a $`6\overline{R}`$US PCR are proposed. A set of simulations is performed to analyze the proposed PCR structure, including workspace analysis, maneuverability in three-dimensional space through trajectory following, assessment of inverse kinetostatic solutions for both the $xy$ planar rotation, and evaluation of the force response at the EE platform along the $z$-axis.
 
 **Maintainers:**
 - Vinay Rodrigues [rodriguesvinay10@gmail.com](mailto:rodriguesvinay10@gmail.com)
@@ -109,7 +102,7 @@ p_ee=[9.21906358e-09 7.30108121e-04 4.97398602e-01] 'and' R_ee=[ 1.77036209e-01 
 ```
 
 ### Trajectory comparison
-In this simulation, the FK model is validated by comparing the obtained solution of the EE position with samples from a reference helical trajectory under a constant load of 5 N at the EE. Euclidean distance is calculated to measure the error between the FK model and the reference trajectory. The error is of the order $1\times10^{-7}$ for the samples which shows the validity of the boundary conditions for the FK model for the PCR.
+In this simulation, the FK model is validated by comparing the obtained solution of the EE position with samples from a reference helical trajectory under a constant load of 5 N at the EE, as depicted in Figure (left). Euclidean distance is calculated for each sample to measure the error between the FK model and the reference trajectory samples. As shown in Figure (right), the error is estimated to be on the order of $1\times10^{-7}$ for the samples, demonstrating the validity of the boundary conditions for the FK model for the proposed PCR.
 
   <div>
     <img src="./Images/paper31a.png" alt="Top Image" width="400">
@@ -145,8 +138,8 @@ FK_vec = Forward_Kinetostatic_traj(motor_angle[i], init_guess)
 ### Compressive force analysis and Rotation of the end-effector platform
 By changing `F` variables in `./Inverse_forward kinetostatic/IK_PCR_ROD.py`, the weight at the end-effector can be adjusted. For the rotation of the end-effector, variable `R_ee` can be adjusted by providing the orientation about `z-axis` in `./Inverse_forward kinetostatic/IK_PCR_ROD.py`.
 ### Workspace analysis
-In this section, a reachable workspace is estimated for a $`6\overline{R}`$US PCR. Estimating a workspace means that finding solutions for the boundary value problem within the tolerance for the boundary conditions defined for the PCR. Due to redundancy in the elastic rod, just providing the joint angles will give a different solution. The computational time taken by the boundary value problem is also large
-as it needs to estimate the pose of the end-effector. So IK model is used to find a solution for heuristically provided sampled points from a cylindrical volume which represents the EE position in Cartesian space. For each sample point, IK solution is calculated, and then based on the boundary condition tolerances, only valid solutions are considered as part of the reachable workspace. For total 4000 samples, the mean computational time for the workspace samples is estimated to be 3.82 seconds with standard deviation of 1.15 seconds. The total time required for the computation of 4000 samples is estimated to be 16.5 hours. The mass of the end-effector is considered negligible for this simulation and orientation at the end-effector is also considered constant as `Ree=[0,0,0]`. The tolerance of `5e-10 units` is considered for all terms in the residual vector `residual`
+In this section, we estimate the reachable workspace for the $`6\overline{R}`$US PCR, a critical aspect in defining its operational boundaries. To achieve this, we employ an IK model through heuristic approach to determine the EE position in Cartesian space. This involves computing a solution considering the kinematic range of the PCR in 3D space and the boundary value problem within defined tolerances. We evaluate a total of 4000 points spanning for EE heights from 0.4 m to 0.72 m, divided into 16 divisions to ensure comprehensive coverage. The resulting reachable workspace is depicted in Fig. \ref{workspace}a. The mean computational time for processing all 4000 points is estimated at 3.82 seconds, with a standard deviation of 1.15 seconds. Additionally, Fig. \ref{workspace}b illustrates the motor angle values for the 250 points within each height division. 
+
 
 <p align="center">
   <img src="./Images/workspace_rod.png" alt="test" width="600"/>
