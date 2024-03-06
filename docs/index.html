@@ -23,6 +23,14 @@
       width: 0.8em;
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
+
+      .gif-container {
+        display: flex;
+    }
+
+    .gif-container img {
+        margin-right: 10px; /* Adjust spacing between the GIFs */
+    }
     }
   </style>
   <link rel="stylesheet" href="style.css" />
@@ -97,6 +105,13 @@
     <!-- <a href=""><i class="fa fa-file-pdf-o" style="font-size:36px; padding:1em;"></i></a> -->
     <!-- <a href=""><i class="fa fa-youtube-play" style="font-size:36px; padding:1em;"></i></a> -->
   </div>
+
+
+  <div class="gif-container">
+    <img src="docs/Images/helical.gif" alt="First GIF">
+    <img src="docs/Images/circular.gif" alt="Second GIF">
+  </div>
+
   <h2 id="Abstract">Introduction</h2>
   <p>Parallel Continuum Robots (PCR) are closed-loop mechanisms but use elastic kinematic 
     links connected in parallel between the end-effector (EE) and the base platform. PCRs 
