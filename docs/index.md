@@ -13,9 +13,9 @@ authors:
   - {name: Shivesh Kumar, affiliation_key: [2,3], link: https://robotik.dfki-bremen.de/de/ueber-uns/mitarbeiter/shku02.html}
   
 affiliations:
-  - {name: Rheinisch-Westf{\"a}lische Technische Hochschule Aachen, 52062 Aachen, Germany, affiliation_key: 1, link: https://www.rwth-aachen.de/go/id/a/?lidx=1}
+  - {name: Rheinisch-Westfalische Technische Hochschule Aachen, 52062 Aachen, Germany, affiliation_key: 1, link: https://www.rwth-aachen.de/go/id/a/?lidx=1}
   - {name: Robotics Innovation Center, German Research Center for Artificial Intelligence (DFKI GmbH), 28359 Bremen, Germany, affiliation_key: 2, link: https://robotik.dfki-bremen.de/de/startseite}
-  - {name: Dynamics Division, Department of Mechanics \& Maritime Sciences, Chalmers University of\\ Technology, 41296 G{\"o}teborg, Sweden, affiliation_key: 3, link: https://www.chalmers.se/en/departments/m2/}
+  - {name: Dynamics Division, Department of Mechanics and Maritime Sciences, Chalmers University of Technology, 41296 Goteborg, Sweden, affiliation_key: 3, link: https://www.chalmers.se/en/departments/m2/}
   
 ---
 
