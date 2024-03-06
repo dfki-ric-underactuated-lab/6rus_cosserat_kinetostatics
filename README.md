@@ -1,7 +1,7 @@
 # 6rus_cosserat_kinetostatics
 <div>
-    <img src="./Images/helical.gif" alt="Helical Trajectory following GIF" width="400">
-    <img src="./Images/circular.gif" alt="Circular Trajectory following GIF" width="400">
+    <img src="docs/Images/helical.gif" alt="Helical Trajectory following GIF" width="400">
+    <img src="docs/Images/circular.gif" alt="Circular Trajectory following GIF" width="400">
 </div>
 <!-- <p align="center">
   <img src="./Images/helical2.gif" alt="Helical Trajectory following GIF" width="400">
@@ -105,8 +105,8 @@ p_ee=[9.21906358e-09 7.30108121e-04 4.97398602e-01] 'and' R_ee=[ 1.77036209e-01 
 In this simulation, the FK model is validated by comparing the obtained solution of the EE position with samples from a reference helical trajectory under a constant load of 5 N at the EE, as depicted in Figure (left). Euclidean distance is calculated for each sample to measure the error between the FK model and the reference trajectory samples. As shown in Figure (right), the error is estimated to be on the order of $1\times10^{-7}$ for the samples, demonstrating the validity of the boundary conditions for the FK model for the proposed PCR.
 
   <div>
-    <img src="./Images/paper31a.png" alt="Top Image" width="400">
-    <img src="./Images/paper31b.png" alt="Bottom Image" width="400">
+    <img src="docs/Images/paper31a.png" alt="Top Image" width="400">
+    <img src="docs/Images/paper31b.png" alt="Bottom Image" width="400">
 </div>
 
 File path for the motor generation using IK model: `./Trajectory_comaprison/IK_PCR_Trajectory.py`
@@ -142,7 +142,7 @@ In this section, we estimate the reachable workspace for the $`6\overline{R}`$US
 
 
 <p align="center">
-  <img src="./Images/workspace_rod.png" alt="test" width="600"/>
+  <img src="docs/Images/workspace_rod.png" alt="test" width="600"/>
 </p>
 
 ```py
