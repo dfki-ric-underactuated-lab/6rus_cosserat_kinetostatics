@@ -7,13 +7,16 @@ Github: https://github.com/dfki-ric-underactuated-lab/6rus_cosserat_kinetostatic
 # youtube: https://www.youtube.com/watch?v=39GL2vPedGY&ab_channel=GermanResearchCenterforArtificialIntelligence
 
 authors:
-  - {name: Ivan Bergonzani, affiliation_key: 1, link: https://robotik.dfki-bremen.de/de/ueber-uns/mitarbeiter/ivbe01.html}
-  - {name: Mihaela Popescu, affiliation_key: 2, link: https://robotik.dfki-bremen.de/de/ueber-uns/mitarbeiter/mipo02.html}
-  - {name: Shivesh Kumar, affiliation_key: 1, link: https://robotik.dfki-bremen.de/de/ueber-uns/mitarbeiter/shku02.html}
-  - {name: Frank Kirchner, affiliation_key: [1,2], link: https://robotik.dfki-bremen.de/de/ueber-uns/mitarbeiter/frki01.html}
+  - {name: Vinayvivian Rodrigues, affiliation_key: [1,2] link: https://de.linkedin.com/in/vinayrodrigues.html}
+  - {name: Bingbin Yu, affiliation_key: 2, link: https://robotik.dfki-bremen.de/de/ueber-uns/mitarbeiter/person/biyu01.html}
+  - {name: Christoph Stoeffler, affiliation_key: 2, link: https://robotik.dfki-bremen.de/de/ueber-uns/mitarbeiter/person/chst04.html}
+  - {name: Shivesh Kumar, affiliation_key: [2,3], link: https://robotik.dfki-bremen.de/de/ueber-uns/mitarbeiter/shku02.html}
+  
 affiliations:
-  - {name: German Research Center for Artificial Intelligence, affiliation_key: 1, link: https://robotik.dfki-bremen.de/de/startseite}
-  - {name: Universität Bremen, affiliation_key: 2, link: https://www.uni-bremen.de/robotik}
+  - {name: Rheinisch-Westf{\"a}lische Technische Hochschule Aachen, 52062 Aachen, Germany, affiliation_key: 1, link: https://www.rwth-aachen.de/go/id/a/?lidx=1}
+  - {name: Robotics Innovation Center, German Research Center for Artificial Intelligence (DFKI GmbH), 28359 Bremen, Germany, affiliation_key: 2, link: https://robotik.dfki-bremen.de/de/startseite}
+  - {name: Dynamics Division, Department of Mechanics \& Maritime Sciences, Chalmers University of\\ Technology, 41296 G{\"o}teborg, Sweden, affiliation_key: 3, link: https://www.chalmers.se/en/departments/m2/}
+  
 ---
 
 ## Introduction
