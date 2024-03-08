@@ -12,7 +12,7 @@ This repo contains the details of our investigation for Kinetostatic Analysis fo
 
 ## Abstract:
 Parallel Continuum Robots (PCR) are closed-loop mechanisms but use elastic kinematic links connected in parallel between the end-effector (EE) and the base platform. PCRs are actuated primarily through large deflections of the interconnected elastic links unlike by rigid joints in rigid parallel mechanisms.
-In this paper, Cosserat rod theory-based forward and inverse kinetostatic models of a <span style="text-decoration: underline;">$6\overline{R}$</span>US PCR are proposed. A set of simulations is performed to analyze the proposed PCR structure, including workspace analysis, maneuverability in three-dimensional space through trajectory following, assessment of inverse kinetostatic solutions for both the $xy$ planar rotation, and evaluation of the force response at the EE platform along the $z$-axis.
+In this paper, Cosserat rod theory-based forward and inverse kinetostatic models of a $`6\overline{R}`$US PCR are proposed. A set of simulations is performed to analyze the proposed PCR structure, including workspace analysis, maneuverability in three-dimensional space through trajectory following, assessment of inverse kinetostatic solutions for both the $xy$ planar rotation, and evaluation of the force response at the EE platform along the $z$-axis.
 
 **Maintainers:**
 - Vinay Rodrigues [rodriguesvinay10@gmail.com](mailto:rodriguesvinay10@gmail.com)
@@ -23,7 +23,7 @@ The libraries used were tested successfully in Python3.8.16 and Ubuntu 18.04.6 L
 
 ## Introduction
 <p align="center">
-  <img src="./Images/PCR_schematic.png" alt="Conceptual design of 6RUS Parallel Continuum Robot" width="800"/>
+  <img src="docs/Images/PCR_schematic.png" alt="Conceptual design of 6RUS Parallel Continuum Robot" width="800"/>
 </p>
 In this work, boundary conditions for both IK and FK are formulated for a $`6\overline{R}`$US PCR using Cosserat rod theory. A shooting method is used to iteratively solve the IVP by updating the guessed variables till the boundary value constraints are within the desired tolerance. The kinetostatic model has been analysed on a different aspect in simulation. Trajectory simulation shows the FK was able to find a solution with an error of the order $1\times10^{-7}$ under constant load condition of 5 N for a helical trajectory. Maximum load capacity and axial stiffness is estimated for the PCR by applying compressing forces at the EE. The solution for different EE rotation is studied to evalute the range of motion for the PCR. A reachable workspace is estimated for the proposed PCR using the IK model. Motor angles range for each rod are also visualised for the reachable workspace. The future work includes experimental validation of this model on the physical prototype. 
 
@@ -71,7 +71,7 @@ q1 = Inverse_Kinetostatic(p_ee, R_ee, init_guess)
 ### Forward Kinetostatic (FK) model:
 For a given motor angle `q1i`, external force `F` and moment `M` acting at the end-effector, initial states of the rod, and unknown variable vector `init_guess`, then `Forward_Kinetostatic()` function computes the pose of the end-effector, `p_ee` and `R_ee` that minimizes the `residual`. 
 
-File path: `./Inverse_forward kinetostatic/FK_PCR_ROD.py`
+File path: `docs/Inverse_forward kinetostatic/FK_PCR_ROD.py`
 
 ```py
 #intial guess for the pose of the end-effector
@@ -107,12 +107,12 @@ p_ee=[9.21906358e-09 7.30108121e-04 4.97398602e-01] 'and' R_ee=[ 1.77036209e-01 
 ### Trajectory comparison
 In this simulation, the FK model is validated by comparing the obtained solution of the EE position with samples from a reference helical trajectory under a constant load of 5 N at the EE, as depicted in Figure (left). Euclidean distance is calculated for each sample to measure the error between the FK model and the reference trajectory samples. As shown in Figure (right), the error is estimated to be on the order of $1\times10^{-7}$ for the samples, demonstrating the validity of the boundary conditions for the FK model for the proposed PCR.
 
-  <div>
-    <img src="docs/Images/paper31a.png" alt="Top Image" width="400">
-    <img src="docs/Images/paper31b.png" alt="Bottom Image" width="400">
+  <div align="center">
+    <img src="docs/Images/paper31a.png" alt="Top Image" width="350">
+    <img src="docs/Images/paper31b.png" alt="Bottom Image" width="350">
 </div>
 
-File path for the motor generation using IK model: `./Trajectory_comaprison/IK_PCR_Trajectory.py`
+File path for the motor generation using IK model: `docs/Trajectory_comaprison/IK_PCR_Trajectory.py`
 
 ```py
 ee_mass = 0.5             #mass of the end-effector platform (Kg)
@@ -126,7 +126,7 @@ where `optimised_states` includes optimized values of the guessed unknown vector
 
 Now, the computed `q1i` is extracted from the `excel_file.xlsx` then `Forward_Kinetostatic_traj()` function is used to compute the pose of the end-effector `p_ee` and `R_ee` which is compared with the reference helical trajectory. The error is calculated by the Euclidean distance between the two. 
 
-File path for the end-effector pose generation using FK model: `./Trajectory_comaprison/FK_PCR_Trajectory.py`
+File path for the end-effector pose generation using FK model: `docs/Trajectory_comaprison/FK_PCR_Trajectory.py`
 
 ```py
 #Provide these motor angles as input to FK model:
@@ -139,13 +139,13 @@ FK_vec = Forward_Kinetostatic_traj(motor_angle[i], init_guess)
 `FK_vec` stores the `total_time`, optimised pose of the end-effector `p_ee`, and `R_ee`. `Forward_Kinetostatic_traj()` plots both the trajectory comparison and Euclidean error plots using the `FK_plots()`.
 
 ### Compressive force analysis and Rotation of the end-effector platform
-By changing `F` variables in `./Inverse_forward kinetostatic/IK_PCR_ROD.py`, the weight at the end-effector can be adjusted. For the rotation of the end-effector, variable `R_ee` can be adjusted by providing the orientation about `z-axis` in `./Inverse_forward kinetostatic/IK_PCR_ROD.py`.
+By changing `F` variables in `docs/Inverse_forward kinetostatic/IK_PCR_ROD.py`, the weight at the end-effector can be adjusted. For the rotation of the end-effector, variable `R_ee` can be adjusted by providing the orientation about `z-axis` in `docs/Inverse_forward kinetostatic/IK_PCR_ROD.py`.
 ### Workspace analysis
 In this section, we estimate the reachable workspace for the $`6\overline{R}`$US PCR, a critical aspect in defining its operational boundaries. To achieve this, we employ an IK model through heuristic approach to determine the EE position in Cartesian space. This involves computing a solution considering the kinematic range of the PCR in 3D space and the boundary value problem within defined tolerances. We evaluate a total of 4000 points spanning for EE heights from 0.4 m to 0.72 m, divided into 16 divisions to ensure comprehensive coverage. The resulting reachable workspace is depicted in Figure. The mean computational time for processing all 4000 points is estimated at 3.82 seconds, with a standard deviation of 1.15 seconds.
 
 
 <p align="center">
-  <img src="docs/Images/workspace_rod.png" alt="test" width="600"/>
+  <img src="docs/Images/workspace_rod.png" alt="test" width="450"/>
 </p>
 
 ```py
