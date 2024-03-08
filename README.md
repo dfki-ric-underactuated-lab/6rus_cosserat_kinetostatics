@@ -1,13 +1,14 @@
 # Kinetostatic Analysis for 6RUS Parallel Continuum Robot using Cosserat Rod Theory
+This repo contains the details of our investigation for Kinetostatic Analysis for 6RUS Parallel Continuum Robot presented in the paper [Kinetostatic Analysis for 6RUS Parallel Continuum Robot using Cosserat Rod Theory] (https://dfki-ric-underactuated-lab.github.io/6rus_cosserat_kinetostatics/). The paper is accepted at the [Advances in Robot Kinematics 2024 Conference](https://ark2024.org/). A preprint will be published soon here.
+
 <div>
-    <img src="docs/Images/helical.gif" alt="Helical Trajectory following GIF" width="400">
-    <img src="docs/Images/circular.gif" alt="Circular Trajectory following GIF" width="400">
+    <img src="docs/Images/helical.gif" alt="Helical Trajectory following GIF" width="350">
+    <img src="docs/Images/circular.gif" alt="Circular Trajectory following GIF" width="350">
 </div>
 <!-- <p align="center">
   <img src="./Images/helical2.gif" alt="Helical Trajectory following GIF" width="400">
 </p> -->
 
-This repo contains the details of our investigation for Kinetostatic Analysis for 6RUS Parallel Continuum Robot presented in the paper [Kinetostatic Analysis for 6RUS Parallel Continuum Robot using Cosserat Rod Theory] (https://dfki-ric-underactuated-lab.github.io/6rus_cosserat_kinetostatics/). The paper is accepted at the [Advances in Robot Kinematics 2024 Conference](https://ark2024.org/). A preprint will be published soon here.
 
 ## Abstract:
 Parallel Continuum Robots (PCR) are closed-loop mechanisms but use elastic kinematic links connected in parallel between the end-effector (EE) and the base platform. PCRs are actuated primarily through large deflections of the interconnected elastic links unlike by rigid joints in rigid parallel mechanisms.
