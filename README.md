@@ -37,7 +37,7 @@ initial states of the rod:
 
 ### Shooting method implementation: 
 <p align="center">
-  <img src="docs/Images/algorithm_flow_rod.pdf" alt="Conceptual design of 6RUS Parallel Continuum Robot" width="800"/>
+  <img src="docs/Images/algorithm_flow_rod.png" alt="Shooting method implementation" width="800"/>
 </p>
 
 ### Inverse Kinetostatic (IK) model: 
