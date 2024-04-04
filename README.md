@@ -162,3 +162,21 @@ Function `Workspace()` stores the residual values in an `excel_file.xlsx`. This 
 The work presented in this paper is supported by the PACOMA project (Grant No. ESA-TECMSM-SOW-022836) subcontracted to us by Airbus Defence \& Space GmbH (Grant No. D.4283.01.02.01) with funds from the European Space Agency. The authors also want to acknowledge John Till's GitHub [tutorial](https://github.com/JohnDTill/ContinuumRobotExamples) on PCR and his guidance on deriving the boundary condition equations for the proposed PCR.
 
 ### Citation
+@misc{rodrigues2024kinetostatic,
+
+      title={Kinetostatic Analysis for 6RUS Parallel Continuum Robot using 
+
+      Cosserat Rod Theory}, 
+
+      author={Vinayvivian Rodrigues and Bingbin Yu and Christoph Stoeffler and
+
+      Shivesh Kumar},
+
+      year={2024},
+
+      eprint={2403.19784},
+
+      archivePrefix={arXiv},
+      
+      primaryClass={cs.RO}
+}
