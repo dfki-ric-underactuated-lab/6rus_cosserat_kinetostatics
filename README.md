@@ -35,6 +35,11 @@ initial states of the rod:
 `ni(0)`: internal force acting at the base of the rod,
 `mi(0)`: internal moment acting at the base of the rod.
 
+### Shooting method implementation: 
+<p align="center">
+  <img src="docs/Images/algorithm_flow_rod.pdf" alt="Conceptual design of 6RUS Parallel Continuum Robot" width="800"/>
+</p>
+
 ### Inverse Kinetostatic (IK) model: 
 For the given pose of the end-effector `p_ee` and `R_ee`, external force `F` and moment `M` acting at the end-effector, initial states of the rod, and unknown variable vector `init_guess`, then `Inverse_Kinetostatic()` function computes the motor angles that minimizes the residual vector `residual`. `q1i`, `q2i`, and `q3i` are the motor angles, and universal joints angles respectively whereas `ni_x(0), ni_y(0), ni_z(0), mi_z(0)` are the internal forces and moments at the base of the flexible link which are unknown. Due to universal joints at the base of the rod, `mi_x(0)=mi_y(0)=0`.
 
