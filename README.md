@@ -1,5 +1,5 @@
 # Kinetostatic Analysis for 6RUS Parallel Continuum Robot using Cosserat Rod Theory
-This repo contains the details of our investigation for Kinetostatic Analysis for 6RUS Parallel Continuum Robot presented in the paper [Kinetostatic Analysis for 6RUS Parallel Continuum Robot using Cosserat Rod Theory](https://dfki-ric-underactuated-lab.github.io/6rus_cosserat_kinetostatics/). The paper is accepted at the [Advances in Robot Kinematics 2024 Conference](https://ark2024.org/). A preprint will be published soon here.
+This repo contains the details of our investigation for Kinetostatic Analysis for 6RUS Parallel Continuum Robot presented in the paper [Kinetostatic Analysis for 6RUS Parallel Continuum Robot using Cosserat Rod Theory](https://dfki-ric-underactuated-lab.github.io/6rus_cosserat_kinetostatics/). The paper is published in the Springer Proceedings in Advanced Robotics.
 
 <div align="center">
     <img src="Images/helical.gif" alt="Helical Trajectory following GIF" width="350">
