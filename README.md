@@ -182,6 +182,7 @@ year="2024",
 publisher="Springer Nature Switzerland",
 address="Cham",
 pages="426--434",
+abstract="Parallel Continuum Robots (PCR) are closed-loop mechanisms but use elastic kinematic links connected in parallel between the end-effector (EE) and the base platform. PCRs are actuated primarily through large deflections of the interconnected elastic links unlike by rigid joints in rigid parallel mechanisms. In this paper, Cosserat rod theory-based forward and inverse kinetostatic models of a 6-RUS PCR are proposed. A set of simulations is performed to analyze the proposed PCR structure, including workspace analysis, maneuverability in three-dimensional space through trajectory following, assessment of inverse kinetostatic solutions for both the xy planar rotation, and evaluation of the force response at the EE platform along the z-axis.",
 isbn="978-3-031-64057-5"
 }
 ```
