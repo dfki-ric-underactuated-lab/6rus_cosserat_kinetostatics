@@ -169,12 +169,19 @@ The work presented in this paper is supported by the PACOMA project (Grant No. E
 
 ### Citation
 ```bibtex
-@misc{rodrigues2024kinetostatic,
-title={Kinetostatic Analysis for 6RUS Parallel Continuum Robot using Cosserat Rod Theory},
-author={Vinayvivian Rodrigues and Bingbin Yu and Christoph Stoeffler and Shivesh Kumar},
-year={2024},
-eprint={2403.19784},
-archivePrefix={arXiv},
-primaryClass={cs.RO}
+@InProceedings{10.1007/978-3-031-64057-5_49,
+author="Rodrigues, Vinayvivian
+and Yu, Bingbin
+and Stoeffler, Christoph
+and Kumar, Shivesh",
+editor="Lenar{\v{c}}i{\v{c}}, Jadran
+and Husty, Manfred",
+title="Kinetostatic Analysis for 6RUS Parallel Continuum Robot Using Cosserat Rod Theory",
+booktitle="Advances in Robot Kinematics 2024",
+year="2024",
+publisher="Springer Nature Switzerland",
+address="Cham",
+pages="426--434",
+isbn="978-3-031-64057-5"
 }
 ```
