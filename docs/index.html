@@ -7,7 +7,8 @@
   <meta http-equiv='cache-control' content='no-cache'> 
   <meta http-equiv='expires' content='0'> 
   <meta http-equiv='pragma' content='no-cache'>
-  <title>Fast Dynamic Walking with RH5 Humanoid Robot</title>
+  <title>Kinetostatic Analysis for 6RUS Parallel Continuum
+    Robot using Cosserat Rod Theory</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -15,7 +16,7 @@
     div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
+        override a similar rule in reveal.js */
     ul.task-list[class]{list-style: none;}
     ul.task-list li input[type="checkbox"] {
       font-size: inherit;
@@ -35,200 +36,100 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Fast Dynamic Walking with RH5 Humanoid Robot</h1>
-
+<h1 class="title">Kinetostatic Analysis for 6RUS Parallel Continuum
+    Robot using Cosserat Rod Theory</h1>
 
 <p class="author">
-    <a href="https://robotik.dfki-bremen.de/de/ueber-uns/mitarbeiter/ivbe01.html">
+    <a href="https://de.linkedin.com/in/vinayrodrigues.html">
   
-  Ivan Bergonzani 
-        <sup>1</sup>
+  Vinayvivian Rodrigues 
+        <sup>12</sup>
         </a>
-      <a href="https://robotik.dfki-bremen.de/de/ueber-uns/mitarbeiter/mipo02.html">
+      <a href="https://robotik.dfki-bremen.de/de/ueber-uns/mitarbeiter/person/biyu01.html">
   
-  Mihaela Popescu 
+  Bingbin Yu 
+        <sup>2</sup>
+        </a>
+      <a href="https://robotik.dfki-bremen.de/de/ueber-uns/mitarbeiter/person/chst04.html">
+  
+  Christoph Stoeffler 
         <sup>2</sup>
         </a>
       <a href="https://robotik.dfki-bremen.de/de/ueber-uns/mitarbeiter/shku02.html">
   
   Shivesh Kumar 
-        <sup>1</sup>
-        </a>
-      <a href="https://robotik.dfki-bremen.de/de/ueber-uns/mitarbeiter/frki01.html">
-  
-  Frank Kirchner 
-        <sup>12</sup>
+        <sup>23</sup>
         </a>
   </p>
 
 <p class="affiliation">
 
-    <a href="https://robotik.dfki-bremen.de/de/startseite">
+    <a href="https://www.rwth-aachen.de/go/id/a/?lidx=1.html">
   
-  German Research Center for Artificial Intelligence 
+      Rheinisch-Westf&auml;llische Technische Hochschule Aachen, 52062 Aachen, Germany 
       <sup>1</sup>
-  
+
     </a>
+    <br>
   
-    <a href="https://www.uni-bremen.de/robotik">
+    <a href="https://robotik.dfki-bremen.de/de/startseite.html">
   
-  Universität Bremen 
+      Robotics Innovation Center, German Research Center for Artificial Intelligence (DFKI GmbH), 28359 Bremen, Germany
       <sup>2</sup>
+
+    </a>
+    <br>
+
+    <a href="https://www.chalmers.se/en/departments/m2/">
+  
+      Dynamics Division, Department of Mechanics and Maritime Sciences, Chalmers University of Technology, 41296 G&ouml;teborg, Sweden
+      <sup>3</sup>
   
     </a>
+    <br>
   </p>
 
 </header>
 
 <div class="header_links">
-  <!-- <a href=""><i class="fa fa-github" style="font-size:36px; padding:1em;"></i></a> -->
-  <a href="https://www.researchgate.net/publication/376186142_Fast_Dynamic_Walking_with_RH5_Humanoid_Robot"><i class="fa fa-file-pdf-o" style="font-size:36px; padding:1em;"></i></a>
-  <a href="https://www.youtube.com/watch?v=39GL2vPedGY&amp;ab_channel=GermanResearchCenterforArtificialIntelligence"><i class="fa fa-youtube-play" style="font-size:36px; padding:1em;"></i></a>
-</div>
-<h2 id="introduction">Introduction</h2>
-<p>Humanoid robots have the potential of becoming general purpose robots
-augmenting the human work-force in industries. However, they must match
-the agility and versatility of humans. It is particularly challenging
-for humanoids actuated with electric drives to achieve that as one must
-strive for the right balance between mass-inertial distribution in the
-robot as well as velocity and force transmissions in its actuation
-concept. In addition to optimal design of the robot, the control system
-must be designed to exploit the full potential of the robot. In this
-paper, we perform experimental investigations on the dynamic walking
-capabilities of a series-parallel hybrid humanoid named RH5. We
-demonstrate that it is possible to walk up to speeds of 0.43 m/s with a
-position controlled robot without full state feedback which makes it one
-of the fastest walking humanoids with similar size and actuation
-modalities.</p>
-<h2 id="experimental-design">Experimental Design</h2>
-<p>The experimental design focuses on the RH5 humanoid capabilities for
-dynamic walking. RH5 is a 2 m tall series-parallel hybrid humanoid robot
-with 32 degrees of freedom (DoFs) and a weight of 62.5 kg. The robot has
-6 DoFs per leg, 7 DoFs on each arm, 3 DoFs for the head and 3 DoFs for
-the body. Head and arms, accounting for <span
-class="math inline">\(23\%\)</span> of the total mass, are not used in
-the experiments.</p>
-The robot was tested in three different experiments:
-<ul>
-<li>
-Fast dynamic walking using several combinations of step time and step
-length,
-</li>
-<li>
-Fast stepping in place using several combination of step time and step
-height,
-</li>
-<li>
-Long stride walking, up to 0.9m step stride.
-</li>
-</ul>
-<figure>
-<!-- 
-  <img src="static/figures/rh5_fast_walk_ver2.png" width="40%" alt="">
-  <img src="static/figures/rh5_long_stride_contrast.png" width="40%" alt="">
-  <img src="static/figures/rh5_step_in_place.png" width="60%" alt=""> 
-  <img src="static/figures/fast_walk.gif" width="50%" alt="">
-  <img src="static/figures/long_stride.gif" width="20%" alt="">
-  <img src="static/figures/step_in_place.gif" width="60%" alt="">
-  -->
-<img src="Images/step_in_place.gif" width="50%" alt="">
-<!-- <img src="static/figures/rh5_long_stride_contrast.png" width="44%" alt="">
-<br>
-<img src="static/figures/fast_walk.gif" width="60%" alt="" style="margin-top: 5px;">
-<figcaption>
-Fig.1 - Shots of different walk experiments
-</figcaption>
-</figure>
-<p>Each motion is generated starting from a velocity and direction input
-given through a joystick. These define the next footsteps to follow.
-Given a Zero-Moment Point (ZMP) trajectory, a corresponding Center of
-Mass (CoM) trajectory is obtained by solving a LQR problem modeling the
-dynamics as a linear inverted pendulum model. The CoM trajectory is then
-stabilized online by means of admittance strategies that leverage the
-force/torque feedback at the ankle joints of while the overall behavior
-of the robot is optimized using a Task Space Inverse Dynamics (TSID)
-based Whole Body Controller (WBC).</p>
-<figure>
-<img src="static/figures/rh5_diagram_full_robot.png" width="100%" alt="">
-<figcaption>
-Fig.2 - RH5 Control Architecture
-</figcaption>
-</figure>
-<h2 id="results-and-discussion">Results and Discussion</h2>
-<table>
-<tbody>
-<tr align="center" valign="center">
-<td>
-<figure>
-<img src="static/figures/plot_footsteps_best_3_video.png" width="95%" alt="">
-<figcaption>
-Fig.3 - Measured footsteps for fast walking
-</figcaption>
-<figure>
-</td>
-<td>
-</figure>
-<img src="static/figures/plot_walk_in_place_force_z_left.png" width="95%" alt="">
-<figcaption>
-Fig.4 - Measured vertical GRF while stepping in place
-</figcaption>
-</figure>
-</td>
-</tr>
-<tr align="center" valign="center">
-<td>
-<figure>
-<img src="static/figures/plot_feet_cop_walk_fast.png" width="95%" alt="">
-<figcaption>
-Fig.5 - Measured CoP on fastest walk
-</figcaption>
-</figure>
-</td>
-<td>
-<figure>
-<img src="static/figures/plot_footsteps_long_strides.png" width="95%" alt="">
-<figcaption>
-Fig.6 - Measured footsteps for long stride walk
-</figcaption>
-</figure>
-</td>
-</tr>
-</tbody>
-</table>
+    <a href="https://github.com/dfki-ric-underactuated-lab/6rus_cosserat_kinetostatics"><i class="fa fa-github" style="font-size:36px; padding:1em;"></i></a>
+    <a href="https://link.springer.com/chapter/10.1007/978-3-031-64057-5_49"><i class="fa fa-file-pdf-o" style="font-size:36px; padding:1em;"></i></a>
+    <!-- <a href=""><i class="fa fa-youtube-play" style="font-size:36px; padding:1em;"></i></a> -->
+  </div>
+  
+  <div style="text-align: center;">
+    <img src='/Images/helical.gif' alt="Helical Trajectory following GIF" width="350">
+    <img src='/Images/circular.gif' alt="Circular Trajectory following GIF" width="350">
+  </div>
+
+
+<img src="/docs/circular.gif" alt="Circular Trajectory following GIF" width="350">
+
+  <h2 id="Abstract">Abstract</h2>
+  <p>Parallel Continuum Robots (PCR) are closed-loop mechanisms but use elastic kinematic 
+    links connected in parallel between the end-effector (EE) and the base platform. PCRs 
+    are actuated primarily through large deflections of the interconnected elastic links 
+    unlike by rigid joints in rigid parallel mechanisms. In this paper, Cosserat rod theory-based forward and inverse kinetostatic models of a 
+6-<u>R</u>US PCR are proposed. A set of simulations is performed to analyze the 
+proposed PCR structure, including workspace analysis, maneuverability in three-dimensional 
+space through trajectory following, assessment of inverse kinetostatic solutions for both 
+the <i>xy</i> planar rotation, and evaluation of the force response at the EE platform along the 
+<i>z</i>-axis.</p>
+
+<!-- <h2 id="code">Code</h2>
+<p>The source code for the work described in the paper can be found <a
+href="https://github.com/dfki-ric-underactuated-lab/6rus_cosserat_kinetostatics">here</a>.</p> -->
+
+<h2 id="ppt">Presentation slides</h2>
 <p>
-To summarise the work,
-<ul>
-<li>
-RH5 is able to walk up to 0.43 m/s which is among the fastest robots
-with similar size and actuation modalities.
-</li>
-<li>
-Saturation of velocity limit for knee and hip joints while using a
-fraction of the available torque. Possible improvements by changing
-screw pitch for selected linear actuators.
-</li>
-<li>
-While using only the 77% of the total mass of the robot (no arms, no
-head), the used effort is below 70% of the limit. This suggests that the
-robot is able to mantain the same performance with a complete upper
-body.
-</li>
-<li>
-Future introduction of an updated upper body for manipulation
-capabilities and momentum compensation.
-</li>
-</ul>
+Will be updated soon...
 </p>
-<div>
-  <p align="center">
-    <img src="static/logo_mrock.png" style="width:200px"> 
-    <img src="static/logo_very_human.jpg" style="width:120px">
-    <img src="static/logo_kimmi.png" style="width:200px">
-  </p>
-  <p align="center">
-    <img src="static/logo.svg" style="width:281px">
-    <img src="static/ulab.gif" style="width:225px">
-  </p>
-</div> -->
-</body>
-</html>
+
+<h2 id="Acknowledgement">Acknowledgement</h2>
+<p>
+The work presented in this paper is supported by the PACOMA project (Grant No. ESA-TECMSM-SOW-022836) 
+subcontracted to us by Airbus Defence & Space GmbH (Grant No. D.4283.01.02.01) with funds 
+from the European Space Agency. The authors also want to acknowledge John Till's <a href="https://www.example.com">github</a> tutorials 
+on PCR and his guidance on deriving the boundary condition equations for the proposed PCR.
+</p>
+
